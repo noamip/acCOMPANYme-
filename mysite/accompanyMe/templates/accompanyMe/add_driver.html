@@ -12,15 +12,15 @@
 
         {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
-        <form action="{% url 'accompanyMe:add_a_user' %}" method="post" class="form-group">
+        <form action="{% url 'accompanyMe:add_a_driver' %}" method="post" class="form-group">
         {% csrf_token %}
-           <!-- <input type="number" minlength="9" maxlength="9" name="id" required>-->
-            <input type="text" name="name" >
-            <input type="email" name="emailAddress">
-            <input type="number" name="phone">
+          <!--  <input type="number" minlength="9" maxlength="9" name="id" >-->
+            <input type="email" name="useremail" placeholder="enter email">
+            <input type="number" name="carsize" placeholder="enter car size">
+            <input type="text" name="destination" placeholder="enter destination">
 
 
-        <input type="submit" value="AddUser">
+        <input type="submit" value="AddDriver">
         </form>
         </body>
 </html>

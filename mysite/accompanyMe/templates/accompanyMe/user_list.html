@@ -21,7 +21,11 @@
     {% endfor %}
 </table>
 
-<form action="add" method="POST">
+<form action="add_user" method="POST">
         {% csrf_token %}
             <button type="submit">Add user</button>
+</form>
+<form action="add_driver" method="POST">
+        {% csrf_token %}
+            <button type="submit">Add Driver</button>
 </form>
