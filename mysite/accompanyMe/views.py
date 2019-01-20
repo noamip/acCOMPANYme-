@@ -19,6 +19,13 @@ def user_list(request):
     })
 
 
+def ride_detail(request, pk):
+    o = get_object_or_404(Ride, pk=pk)
+
+    return render(request, "accompanyMe/ride_detail.html", {
+        'object': o,
+    })
+
 def ride_list(request):
     return render(request, "accompanyMe/view_rides.html", {
         'object_list': Ride.objects.order_by("-hour"),
@@ -91,11 +98,11 @@ def remove(request):
 
 
 def select_ride(request):
-    e = BookedRide(
-        ride_id=request.POST["object"].id,
-        user_email=request.POST["object"].user_email
-    )
-    e.save()
+    # e = BookedRide(
+    #     ride_id=request.POST["object"].id,
+    #     user_email=request.POST["object"].user_email
+    # )
+    # e.save()
     return HttpResponse("ride selected successfuly")
 
 

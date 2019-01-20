@@ -1,3 +1,5 @@
+{% load static %}
+
 
 <h1> available rides</h1>
 <!--<table border="1">-->
@@ -6,16 +8,39 @@
         <!--<th>destination</th>-->
         <!--<th>hour</th>-->
     <!--</tr>-->
-       <form action="{% url 'accompanyMe:select_ride' %}" method="post" class="form-group">
-        {% csrf_token %}
+ <table class="table table-hover">
+        <tr>
+            <th>ID</th>
+            <th>Destination</th>
+            <th>Date</th>
+            <th>Hour</th>
+            <th>Num Available places</th>
+        </tr>
         {% for object in object_list %}
-           <input type="radio" name="object" value="male" checked> {{object}}<br>
-
+            <tr>
+                <td>
+                    <a href="{% url "ride:detail" object.id %}">
+                        #{{ object.id }}
+                    </a>
+                </td>
+                <td>
+                    {{ object.date }}
+                </td>
+                <td>
+                    {{ object.destination }}
+                </td>
+                <td>
+                    {{ object.hour }}
+                </td>
+                  <td>
+                    {{ object.num_of_available_places }}
+                </td>
+            </tr>
         {% endfor %}
 
-        <input type="submit" value="selectRide">
-       </form>
 
+
+{% load static %}
 
 
 

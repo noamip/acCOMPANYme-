@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.forms import forms
+from django.urls import reverse
 
 
 class Driver(models.Model):
@@ -20,6 +21,10 @@ class Ride(models.Model):
     date = models.DateField()
     num_of_available_places = models.IntegerField()
     available = models.BooleanField()
+
+    def get_absolute_url(self):
+        return reverse("expenses:detail", args=(self.id,))
+
 
     def __str__(self):
         return f"[#{self.id}] {self.destination} {self.driver_email} {self.hour} {self.num_of_available_places} @{self.available}"
