@@ -2,10 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="718b30d4-7557-4643-9e30-91ab975e0b5e" name="Default Changelist" comment="">
+<<<<<<< HEAD
       <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mysite/accompanyMe/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/accompanyMe/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mysite/accompanyMe/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/accompanyMe/views.py" afterDir="false" />
+=======
+      <change afterPath="$PROJECT_DIR$/mysite/accompanyMe/templates/accompanyMe/add_driver.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysite/accompanyMe/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysite/accompanyMe/migrations/0002_auto_20190120_1107.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysite/accompanyMe/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/accompanyMe/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysite/accompanyMe/templates/accompanyMe/add_user.html" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/accompanyMe/templates/accompanyMe/add_user.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysite/accompanyMe/templates/accompanyMe/user_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/accompanyMe/templates/accompanyMe/user_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysite/accompanyMe/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/accompanyMe/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysite/accompanyMe/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/accompanyMe/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysite/db.sqlite3" beforeDir="false" />
+>>>>>>> d168e147d4774269a406313e3397ceb741861785
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -23,26 +36,26 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="html" value="8" />
+          <entry key="html" value="9" />
           <entry key="py" value="15" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="HTML" value="8" />
+          <entry key="HTML" value="9" />
           <entry key="Python" value="15" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="html" value="306" />
-          <entry key="py" value="622" />
+          <entry key="html" value="472" />
+          <entry key="py" value="903" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="HTML" value="306" />
-          <entry key="Python" value="622" />
+          <entry key="HTML" value="472" />
+          <entry key="Python" value="903" />
         </counts>
       </usages-collector>
     </session>
@@ -81,20 +94,29 @@
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mysite/accompanyMe/views.py">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="516">
               <caret line="34" column="54" selection-start-line="34" selection-start-column="54" selection-end-line="34" selection-end-column="54" />
               <folding>
                 <element signature="e#0#36#0" expanded="true" />
                 <marker date="1547979916288" expanded="true" signature="717:930" ph="..." />
+=======
+            <state relative-caret-position="323">
+              <caret line="28" column="38" selection-start-line="28" selection-start-column="35" selection-end-line="28" selection-end-column="44" />
+              <folding>
+                <element signature="e#0#36#0" expanded="true" />
+                <marker date="1547978280432" expanded="true" signature="1105:1108" ph="..." />
+>>>>>>> d168e147d4774269a406313e3397ceb741861785
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+<<<<<<< HEAD
         <entry file="file://$PROJECT_DIR$/mysite/mysite/settings.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="836">
@@ -108,6 +130,12 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="352">
               <caret line="16" column="23" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
+=======
+        <entry file="file://$PROJECT_DIR$/mysite/accompanyMe/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="13" column="21" lean-forward="true" selection-start-line="13" selection-start-column="21" selection-end-line="13" selection-end-column="21" />
+>>>>>>> d168e147d4774269a406313e3397ceb741861785
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
@@ -118,8 +146,13 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mysite/accompanyMe/tests.py">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="132">
               <caret line="8" selection-start-line="8" selection-end-line="8" />
+=======
+            <state relative-caret-position="204">
+              <caret line="12" column="24" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="24" />
+>>>>>>> d168e147d4774269a406313e3397ceb741861785
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
               </folding>
@@ -127,11 +160,16 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mysite/accompanyMe/models.py">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="110">
               <caret line="5" selection-start-line="5" selection-end-line="7" selection-end-column="38" />
+=======
+            <state relative-caret-position="357">
+              <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+>>>>>>> d168e147d4774269a406313e3397ceb741861785
             </state>
           </provider>
         </entry>
@@ -139,8 +177,22 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mysite/accompanyMe/templates/accompanyMe/add_user.html">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="198">
               <caret line="9" selection-start-line="9" selection-end-line="9" />
+=======
+            <state relative-caret-position="374">
+              <caret line="22" column="45" lean-forward="true" selection-start-line="22" selection-start-column="45" selection-end-line="22" selection-end-column="45" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mysite/accompanyMe/templates/accompanyMe/add_driver.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="291">
+              <caret line="18" column="77" lean-forward="true" selection-start-line="18" selection-start-column="77" selection-end-line="18" selection-end-column="77" />
+>>>>>>> d168e147d4774269a406313e3397ceb741861785
             </state>
           </provider>
         </entry>
@@ -148,8 +200,13 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mysite/accompanyMe/templates/accompanyMe/user_list.html">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="506">
               <caret line="23" selection-start-line="23" selection-end-line="26" selection-end-column="7" />
+=======
+            <state relative-caret-position="357">
+              <caret line="21" column="8" lean-forward="true" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="8" />
+>>>>>>> d168e147d4774269a406313e3397ceb741861785
             </state>
           </provider>
         </entry>
@@ -185,19 +242,37 @@
         <option value="$PROJECT_DIR$/mysite/mysite/urls.py" />
         <option value="$PROJECT_DIR$/mysite/accompanyMe/tests.py" />
         <option value="$PROJECT_DIR$/mysite/mysite/settings.py" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/mysite/accompanyMe/models.py" />
+=======
+>>>>>>> d168e147d4774269a406313e3397ceb741861785
         <option value="$PROJECT_DIR$/mysite/accompanyMe/templates/accompanyMe/expense_list.html" />
-        <option value="$PROJECT_DIR$/mysite/accompanyMe/templates/accompanyMe/add_user.html" />
         <option value="$PROJECT_DIR$/mysite/accompanyMe/urls.py" />
+        <option value="$PROJECT_DIR$/mysite/accompanyMe/templates/accompanyMe/add_user.html" />
+<<<<<<< HEAD
+        <option value="$PROJECT_DIR$/mysite/accompanyMe/urls.py" />
+=======
+        <option value="$PROJECT_DIR$/mysite/accompanyMe/models.py" />
+>>>>>>> d168e147d4774269a406313e3397ceb741861785
         <option value="$PROJECT_DIR$/mysite/accompanyMe/views.py" />
+        <option value="$PROJECT_DIR$/mysite/accompanyMe/templates/accompanyMe/add_driver.html" />
+        <option value="$PROJECT_DIR$/mysite/accompanyMe/templates/accompanyMe/user_list.html" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
+<<<<<<< HEAD
     <option name="x" value="-7" />
     <option name="width" value="697" />
     <option name="height" value="735" />
+=======
+    <option name="x" value="15" />
+    <option name="y" value="30" />
+    <option name="width" value="1890" />
+    <option name="height" value="930" />
+>>>>>>> d168e147d4774269a406313e3397ceb741861785
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -222,8 +297,35 @@
               <item name="accompanyMe" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
+<<<<<<< HEAD
               <item name="acCOMPANYme-" type="b2602c69:ProjectViewProjectNode" />
               <item name="acCOMPANYme-" type="462c0819:PsiDirectoryNode" />
+=======
+              <item name="hack" type="b2602c69:ProjectViewProjectNode" />
+              <item name="hack" type="462c0819:PsiDirectoryNode" />
+              <item name="mysite" type="462c0819:PsiDirectoryNode" />
+              <item name="accompanyMe" type="462c0819:PsiDirectoryNode" />
+              <item name="migrations" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="hack" type="b2602c69:ProjectViewProjectNode" />
+              <item name="hack" type="462c0819:PsiDirectoryNode" />
+              <item name="mysite" type="462c0819:PsiDirectoryNode" />
+              <item name="accompanyMe" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="hack" type="b2602c69:ProjectViewProjectNode" />
+              <item name="hack" type="462c0819:PsiDirectoryNode" />
+              <item name="mysite" type="462c0819:PsiDirectoryNode" />
+              <item name="accompanyMe" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="accompanyMe" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="hack" type="b2602c69:ProjectViewProjectNode" />
+              <item name="hack" type="462c0819:PsiDirectoryNode" />
+>>>>>>> d168e147d4774269a406313e3397ceb741861785
               <item name="mysite" type="462c0819:PsiDirectoryNode" />
               <item name="mysite" type="462c0819:PsiDirectoryNode" />
             </path>
@@ -270,12 +372,25 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
+<<<<<<< HEAD
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24925596" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
+=======
+    <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Favorites" side_tool="true" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24960254" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Version Control" />
+      <window_info anchor="bottom" id="Python Console" />
+      <window_info anchor="bottom" id="Terminal" weight="0.3285968" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+>>>>>>> d168e147d4774269a406313e3397ceb741861785
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3285968" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -297,10 +412,10 @@
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="0" weight="0.3285968" />
       <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="2" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="2" />
       <window_info anchor="bottom" id="Python Console" order="3" />
       <window_info anchor="bottom" id="Message" order="4" />
-      <window_info anchor="bottom" id="Find" order="5" />
+      <window_info anchor="bottom" id="Find" order="5" weight="0.3285968" />
       <window_info anchor="bottom" id="Run" order="6" />
       <window_info anchor="bottom" id="Debug" order="7" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
@@ -313,6 +428,9 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="LAST_COMMIT_MESSAGE" value="" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/mysite/manage.py">
@@ -339,6 +457,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/mysite/accompanyMe/templates/accompanyMe/user_form.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="21" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/mysite/accompanyMe/apps.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="110">
@@ -349,6 +474,7 @@
     <entry file="file://$PROJECT_DIR$/mysite/accompanyMe/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/mysite/mysite/settings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="836">
@@ -360,35 +486,66 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="132">
           <caret line="8" selection-start-line="8" selection-end-line="8" />
+=======
+    <entry file="file://$PROJECT_DIR$/mysite/accompanyMe/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="21" lean-forward="true" selection-start-line="13" selection-start-column="21" selection-end-line="13" selection-end-column="21" />
+>>>>>>> d168e147d4774269a406313e3397ceb741861785
           <folding>
-            <element signature="e#0#32#0" expanded="true" />
+            <element signature="e#0#28#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/mysite/accompanyMe/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="110">
           <caret line="5" selection-start-line="5" selection-end-line="7" selection-end-column="38" />
+=======
+    <entry file="file://$PROJECT_DIR$/mysite/accompanyMe/tests.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="24" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+>>>>>>> d168e147d4774269a406313e3397ceb741861785
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mysite/accompanyMe/templates/accompanyMe/add_user.html">
+    <entry file="file://$PROJECT_DIR$/mysite/accompanyMe/views.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="198">
           <caret line="9" selection-start-line="9" selection-end-line="9" />
+=======
+        <state relative-caret-position="323">
+          <caret line="28" column="38" selection-start-line="28" selection-start-column="35" selection-end-line="28" selection-end-column="44" />
+          <folding>
+            <element signature="e#0#36#0" expanded="true" />
+            <marker date="1547978280432" expanded="true" signature="1105:1108" ph="..." />
+          </folding>
+>>>>>>> d168e147d4774269a406313e3397ceb741861785
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mysite/accompanyMe/templates/accompanyMe/user_list.html">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="506">
           <caret line="23" selection-start-line="23" selection-end-line="26" selection-end-column="7" />
+=======
+        <state relative-caret-position="357">
+          <caret line="21" column="8" lean-forward="true" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="8" />
+>>>>>>> d168e147d4774269a406313e3397ceb741861785
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mysite/accompanyMe/templates/accompanyMe/user_form.html">
+    <entry file="file://$PROJECT_DIR$/mysite/accompanyMe/templates/accompanyMe/add_driver.html">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="88">
           <caret line="4" column="21" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="21" />
         </state>
@@ -401,17 +558,33 @@
           <folding>
             <element signature="e#0#28#0" expanded="true" />
           </folding>
+=======
+        <state relative-caret-position="291">
+          <caret line="18" column="77" lean-forward="true" selection-start-line="18" selection-start-column="77" selection-end-line="18" selection-end-column="77" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mysite/accompanyMe/views.py">
+    <entry file="file://$PROJECT_DIR$/mysite/accompanyMe/templates/accompanyMe/add_user.html">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="45" lean-forward="true" selection-start-line="22" selection-start-column="45" selection-end-line="22" selection-end-column="45" />
+>>>>>>> d168e147d4774269a406313e3397ceb741861785
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mysite/accompanyMe/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="516">
           <caret line="34" column="54" selection-start-line="34" selection-start-column="54" selection-end-line="34" selection-end-column="54" />
           <folding>
             <element signature="e#0#36#0" expanded="true" />
             <marker date="1547979916288" expanded="true" signature="717:930" ph="..." />
           </folding>
+=======
+        <state relative-caret-position="357">
+          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+>>>>>>> d168e147d4774269a406313e3397ceb741861785
         </state>
       </provider>
     </entry>
