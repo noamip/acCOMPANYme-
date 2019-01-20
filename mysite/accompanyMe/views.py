@@ -13,6 +13,7 @@ def expense_list(request):
 
 def add_a_user(request):#,name,email,phone
     e = User(
+        id=request.POST["id"],
         name=request.POST["name"],
         email=request.POST["emailAddress"],
         phone_number=request.POST["phone"]

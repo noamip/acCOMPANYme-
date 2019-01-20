@@ -3,6 +3,7 @@ from django.db import models
 
 # ORM: Object-Relational Mapper
 class User(models.Model):
+    # user_id=models.IntegerField(primary_key=True)
     name=models.CharField(max_length=300)
     email=models.TextField()
     phone_number=models.IntegerField()

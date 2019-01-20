@@ -1,13 +1,26 @@
-<h1>add user</h1>
+{% load static %}
+<html>
+    <head>
+        <title>Django Girls blog</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+      <!--  <link rel="stylesheet" href="{% static 'css/blog.css' %}">-->
+    </head>
+    <body>
 
-{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+        <h1>add user</h1>
 
-<!--<form action="{% url 'accompanyMe:add_a_user' %}" method="post">
-{% csrf_token %}
-    <input type="text" name="name" >
-    <input type="email" name="emailAddress">
-    <input type="number" name="phone">
+        {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+        <form action="{% url 'accompanyMe:add_a_user' %}" method="post" class="form-group">
+        {% csrf_token %}
+            <input type="number" minlength="9" maxlength="9" name="id" >
+            <input type="text" name="name" >
+            <input type="email" name="emailAddress">
+            <input type="number" name="phone">
 
 
-<input type="submit" value="AddUser">
-</form>-->
+        <input type="submit" value="AddUser">
+        </form>
+        </body>
+</html>
