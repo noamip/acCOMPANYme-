@@ -6,7 +6,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 import pyqrcode
 
 # from  models import Expense
-from .models import User, Driver, Ride,BookedRide
+from .models import User, Driver, Ride, BookedRide
+
 
 def index(request):
     return render(request, "accompanyMe/index.html")
@@ -17,10 +18,12 @@ def user_list(request):
         'object_list': User.objects.order_by("-username"),
     })
 
+
 def ride_list(request):
     return render(request, "accompanyMe/view_rides.html", {
         'object_list': Ride.objects.order_by("-hour"),
     })
+
 
 
 def adduser(request):
@@ -42,6 +45,7 @@ def add_a_user(request):  # ,name,email,phone
 def adddriver(request):
     return render(request, "accompanyMe/add_driver.html")
 
+
 def add_a_driver(request):  # ,name,email,phone
     e = Driver(
         # user_email = request.POST["useremail"],
@@ -52,38 +56,39 @@ def add_a_driver(request):  # ,name,email,phone
     e.save()
     return HttpResponse("driver added successfuly")
 
+
 def addride(request):
     return render(request, "accompanyMe/add_ride.html")
 
+
 def add_a_ride(request):
     e = Ride(
-        driver_email = request.POST["driveremail"],
-        destination = request.POST["destination"],
-        hour = request.POST["hour"],
+        driver_email=request.POST["driveremail"],
+        destination=request.POST["destination"],
+        hour=request.POST["hour"],
         date=request.POST["date"],
-        num_of_available_places = request.POST["num_of_available_places"],
+        num_of_available_places=request.POST["num_of_available_places"],
         available=request.POST["available"],
     )
     e.save()
     return HttpResponse("ride added successfuly")
 
 
-
-
 def bar_code(request):
-   qr = pyqrcode.create("https://repl.it/@ronnysherer/")
-   qr.png("horn.png", scale=6)
-   qr.show()
-   response = HttpResponse(mimetype="image/png")
-   qr.png.save(response, "PNG")
+    qr = pyqrcode.create("https://repl.it/@ronnysherer/")
+    qr.png("horn.png", scale=6)
+    qr.show()
+    response = HttpResponse(mimetype="image/png")
+    qr.png.save(response, "PNG")
 
-   return response
-   # return HttpResponse("ok")
+    return response
+    # return HttpResponse("ok")
 
 
 def remove(request):
     User.objects.all().delete()
     return HttpResponse("remove")
+
 
 def select_ride(request):
     e = BookedRide(
@@ -93,14 +98,16 @@ def select_ride(request):
     e.save()
     return HttpResponse("ride selected successfuly")
 
-# def add_user(request):  # ,name,email,phone
-#     if request.method=="POST":
-#          form=UserForm(request.POST)
-#     else:
-#         form = UserForm()
-#     return render(request, "accompanyMe/add_usr.html",{"form":form})
 
 class UserForm(forms.Form):
-    name=forms.CharField(max_length=100)
-    email =forms.EmailField()
-    password=forms.PasswordInput()
+    name = forms.CharField(max_length=100)
+    email = forms.EmailField()
+    password = forms.PasswordInput()
+
+
+# def adduser(request):  # ,name,email,phone
+#     if request.method == "POST":
+#         form = UserForm(request.POST)
+#     else:
+#         form = UserForm()
+#     return render(request, "accompanyMe/add_user.html", {"form": form})
