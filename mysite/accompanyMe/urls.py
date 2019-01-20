@@ -12,4 +12,6 @@ urlpatterns = [
     path('AddUser', views.add_a_user, name='add_a_user'),
     path('AddDriver', views.add_a_driver, name='add_a_driver'),
     path('remove', views.remove, name="remove"),
+    path('BarCode/', views.bar_code, name="bar_code"),
+
 ]
