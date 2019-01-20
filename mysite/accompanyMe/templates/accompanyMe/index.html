@@ -1,15 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Add New Expense
+{% endblock %}
+
+{% block content %}
 <h1>
-    acCOMPANYme!
+    acCOMPANY me!
 </h1>
 <form action="add_user" method="POST">
         {% csrf_token %}
             <button type="submit">Add user</button>
 </form>
-<form action="add_driver" method="POST">
-        {% csrf_token %}
-            <button type="submit">Add Driver</button>
-</form>
+<!--<form action="add_driver" method="POST">-->
+        <!--{% csrf_token %}-->
+            <!--<button type="submit">Add Driver</button>-->
+<!--</form>-->
 <form action="add_ride" method="POST">
         {% csrf_token %}
             <button type="submit">Add Ride</button>
 </form>
+
+{% endblock %}

@@ -14,11 +14,9 @@
         {{form.as_ul}}
         <form action="{% url 'accompanyMe:add_a_user' %}" method="post" class="form-group">
         {% csrf_token %}
-           <!-- <input type="number" minlength="9" maxlength="9" name="id" required>-->
             <input type="text" name="name" placeholder="enter full name"><br/>
             <input type="email" name="emailAddress" placeholder="enter email"><br/>
             <input type="password" name="password" placeholder="enter password">
-            <!--<input type="number" name="phone" placeholder="enter phone number"><br/>-->
 
 
         <input type="submit" value="AddUser">

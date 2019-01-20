@@ -4,9 +4,9 @@ from django.forms import forms
 from django.urls import reverse
 
 
-class Driver(models.Model):
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
-    carsize = models.IntegerField()
+# class Driver(models.Model):
+#     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+#     carsize = models.IntegerField()
 
  # user_email = models.EmailField()
 

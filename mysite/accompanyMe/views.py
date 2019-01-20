@@ -6,7 +6,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 import pyqrcode
 
 # from  models import Expense
-from .models import User, Driver, Ride, BookedRide
+from .models import User, Ride, BookedRide
+#Driver
 
 
 def index(request):
@@ -49,19 +50,19 @@ def add_a_user(request):  # ,name,email,phone
     return HttpResponse("user added successfuly")
 
 
-def adddriver(request):
-    return render(request, "accompanyMe/add_driver.html")
-
-
-def add_a_driver(request):  # ,name,email,phone
-    e = Driver(
-        # user_email = request.POST["useremail"],
-        user_id=request.POST["id"],
-        carsize=request.POST["carsize"],
-        # destination = request.POST["destination"],
-    )
-    e.save()
-    return HttpResponse("driver added successfuly")
+# def adddriver(request):
+#     return render(request, "accompanyMe/add_driver.html")
+#
+#
+# def add_a_driver(request):  # ,name,email,phone
+#     e = Driver(
+#         # user_email = request.POST["useremail"],
+#         user_id=request.POST["id"],
+#         carsize=request.POST["carsize"],
+#         # destination = request.POST["destination"],
+#     )
+#     e.save()
+#     return HttpResponse("driver added successfuly")
 
 
 def addride(request):
