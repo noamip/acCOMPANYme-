@@ -8,8 +8,6 @@ import pyqrcode
 # from  models import Expense
 from .models import User, Driver, Ride
 
-
-
 def index(request):
     return render(request, "accompanyMe/index.html")
 
@@ -41,6 +39,9 @@ def add_a_user(request):  # ,name,email,phone
     return HttpResponse("user added successfuly")
 
 
+def adddriver(request):
+    return render(request, "accompanyMe/add_driver.html")
+
 def add_a_driver(request):  # ,name,email,phone
     e = Driver(
         # user_email = request.POST["useremail"],
@@ -51,6 +52,8 @@ def add_a_driver(request):  # ,name,email,phone
     e.save()
     return HttpResponse("driver added successfuly")
 
+def addride(request):
+    return render(request, "accompanyMe/add_ride.html")
 
 def add_a_ride(request):
     e = Ride(
@@ -66,21 +69,19 @@ def add_a_ride(request):
 
 
 
-def add(request):
-    return render(request, "accompanyMe/add_user.html" )
-
-
 
 def bar_code(request):
    qr = pyqrcode.create("https://repl.it/@ronnysherer/")
    qr.png("horn.png", scale=6)
    qr.show()
-   return render(request, "accompanyMe/add_user.html")
+   return HttpResponse("ok")
 
 
 def remove(request):
     User.objects.all().delete()
     return HttpResponse("remove")
+
+
 
 
 
