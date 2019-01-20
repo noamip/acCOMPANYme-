@@ -6,7 +6,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 import pyqrcode
 
 # from  models import Expense
-from .models import User, Driver, Ride
+from .models import User, Driver, Ride,BookedRide
 
 def index(request):
     return render(request, "accompanyMe/index.html")
@@ -14,7 +14,7 @@ def index(request):
 
 def user_list(request):
     return render(request, "accompanyMe/user_list.html", {
-        'object_list': User.objects.order_by("-name"),
+        'object_list': User.objects.order_by("-username"),
     })
 
 def ride_list(request):
@@ -74,38 +74,33 @@ def bar_code(request):
    qr = pyqrcode.create("https://repl.it/@ronnysherer/")
    qr.png("horn.png", scale=6)
    qr.show()
-   return HttpResponse("ok")
+   response = HttpResponse(mimetype="image/png")
+   qr.png.save(response, "PNG")
+
+   return response
+   # return HttpResponse("ok")
 
 
 def remove(request):
     User.objects.all().delete()
     return HttpResponse("remove")
 
+def select_ride(request):
+    e = BookedRide(
+        ride_id=request.POST["object"].id,
+        user_email=request.POST["object"].user_email
+    )
+    e.save()
+    return HttpResponse("ride selected successfuly")
 
-
-
-
-
-#
-# class ContactUsForm(forms.Form):
-#     name=forms.CharField(max_length=300)
-#     email=forms.TextField()
-#     phone_number=forms.IntegerField()
-#
-# class ExpenseForm(forms.ModelForm):
-#     class Meta:
-#         model = Expense
-#         fields = "__all__"
-#
-#
-# def expense_create(request):
-#     if request.method == "POST":
-#         form = ExpenseForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             return redirect("expenses:list")
+# def add_user(request):  # ,name,email,phone
+#     if request.method=="POST":
+#          form=UserForm(request.POST)
 #     else:
-#         form = ExpenseForm()
-#     return render(request, "accompanyMe/user_form.html", {
-#         'form': form,
-#     })
+#         form = UserForm()
+#     return render(request, "accompanyMe/add_usr.html",{"form":form})
+
+class UserForm(forms.Form):
+    name=forms.CharField(max_length=100)
+    email =forms.EmailField()
+    password=forms.PasswordInput()
