@@ -4,7 +4,7 @@ from django import forms
 from django.shortcuts import render, get_object_or_404, redirect
 
 # from  models import Expense
-from .models import User, Driver
+from .models import User, Driver, Ride
 
 
 def expense_list(request):
@@ -33,6 +33,21 @@ def add_a_driver(request):  # ,name,email,phone
     e.save()
     return HttpResponse("driver added successfuly")
 
+def add_a_ride(request):
+    e = Ride(
+        driver_email = request.POST["driveremail"],
+        destination = request.POST["destination"],
+        hour = request.POST["hour"],
+        date=request.POST["date"],
+        num_of_available_places = request.POST["numofavailableplaces"],
+        available=request.POST["hour"],
+
+
+
+    )
+    e.save()
+    return HttpResponse("ride added successfuly")
+
 
 def adduser(request):
     return render(request, "accompanyMe/add_user.html")
@@ -40,6 +55,9 @@ def adduser(request):
 
 def adddriver(request):
     return render(request, "accompanyMe/add_driver.html")
+
+def addride(request):
+    return render(request, "accompanyMe/add_ride.html")
 
 
 def remove(request):

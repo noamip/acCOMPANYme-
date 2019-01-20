@@ -29,4 +29,16 @@ class Migration(migrations.Migration):
                 ('phone_number', models.DecimalField(decimal_places=9, max_digits=9)),
             ],
         ),
+        migrations.CreateModel(
+            name='Ride',
+            fields=[
+                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('driver_email', models.EmailField(max_length=254)),
+                ('destination', models.CharField(max_length=300)),
+                ('hour', models.TimeField),
+                ('date', models.DateField),
+                ('num_of_available_places', models.DecimalField(decimal_places=3, max_digits=3)),
+                ('available', models.BooleanField),
+            ],
+        ),
     ]
