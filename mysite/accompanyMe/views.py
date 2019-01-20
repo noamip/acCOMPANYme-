@@ -54,8 +54,8 @@ def bar_code(request):
     url = pyqrcode.create('http://uca.edu')
     url.svg('uca-url.svg', scale=8)
     url.eps('uca-url.eps', scale=2)
-    print(url.terminal(quiet_zone=1))
-    return render(request, "accompanyMe/add_user.html")
+   # print(url.terminal(quiet_zone=1))
+    return HttpResponse(url.terminal(quiet_zone=1))
 
 
 def remove(request):
