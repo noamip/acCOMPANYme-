@@ -51,6 +51,7 @@ def add_a_driver(request):  # ,name,email,phone
     e.save()
     return HttpResponse("driver added successfuly")
 
+
 def add_a_ride(request):
     e = Ride(
         driver_email = request.POST["driveremail"],
@@ -64,19 +65,17 @@ def add_a_ride(request):
     return HttpResponse("ride added successfuly")
 
 
-def adddriver(request):
-    return render(request, "accompanyMe/add_driver.html")
 
-def addride(request):
-    return render(request, "accompanyMe/add_ride.html")
+def add(request):
+    return render(request, "accompanyMe/add_user.html" )
+
 
 
 def bar_code(request):
-    url = pyqrcode.create('http://uca.edu')
-    url.svg('uca-url.svg', scale=8)
-    url.eps('uca-url.eps', scale=2)
-   # print(url.terminal(quiet_zone=1))
-    return HttpResponse(url.terminal(quiet_zone=1))
+   qr = pyqrcode.create("https://repl.it/@ronnysherer/")
+   qr.png("horn.png", scale=6)
+   qr.show()
+   return render(request, "accompanyMe/add_user.html")
 
 
 def remove(request):
