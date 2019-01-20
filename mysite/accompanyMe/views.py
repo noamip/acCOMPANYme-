@@ -46,6 +46,7 @@ def add_a_driver(request):  # ,name,email,phone
     e.save()
     return HttpResponse("driver added successfuly")
 
+
 def add_a_ride(request):
     e = Ride(
         driver_email = request.POST["driveremail"],

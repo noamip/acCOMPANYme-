@@ -14,12 +14,15 @@ from django.db import models
 
 class Driver(models.Model):
     user_id=models.ForeignKey(User,on_delete=models.CASCADE)
-    # user_email = models.EmailField()
+g    # user_email = models.EmailField()
     carsize = models.IntegerField()
     # destination = models.TextField()
 
 
-
+class BookedRide(models.Model):
+    ride_id=models.ForeignKey(Ride,on_delete=models.CASCADE)
+    # user_email = models.EmailField()
+    user_id = models.ForeignKey(User,on_delete=models.CASCADE)
 
 class Ride(models.Model):
     # user_id=models.IntegerField(primary_key=True)
