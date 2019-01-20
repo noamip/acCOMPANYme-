@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django import forms
 from django.shortcuts import render, get_object_or_404, redirect
+import pyqrcode
 
 # from  models import Expense
 from .models import User
@@ -20,8 +21,19 @@ def add_a_user(request):#,name,email,phone
     e.save()
     return HttpResponse("good")
 
+
+
 def add(request):
     return render(request, "accompanyMe/add_user.html" )
+
+
+def bar_code(request):
+    url = pyqrcode.create('http://uca.edu')
+    url.svg('uca-url.svg', scale=8)
+    url.eps('uca-url.eps', scale=2)
+    print(url.terminal(quiet_zone=1))
+    return render(request, "accompanyMe/add_user.html")
+
 
 def remove(request):
     User.objects.all().delete()

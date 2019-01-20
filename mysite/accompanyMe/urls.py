@@ -12,4 +12,7 @@ urlpatterns = [
     path('<int:pk>/',
          views.expense_detail,
          name="detail"),
+path('BarCode/',
+         views.bar_code,
+         name="bar_code"),
 ]
