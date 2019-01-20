@@ -42,21 +42,17 @@ def adduser(request):
 def adddriver(request):
     return render(request, "accompanyMe/add_driver.html")
 
-<<<<<<< HEAD
-
 
 def add(request):
     return render(request, "accompanyMe/add_user.html" )
-=======
->>>>>>> d168e147d4774269a406313e3397ceb741861785
+
 
 
 def bar_code(request):
-    url = pyqrcode.create('http://uca.edu')
-    url.svg('uca-url.svg', scale=8)
-    url.eps('uca-url.eps', scale=2)
-    print(url.terminal(quiet_zone=1))
-    return render(request, "accompanyMe/add_user.html")
+   qr = pyqrcode.create("https://repl.it/@ronnysherer/")
+   qr.png("horn.png", scale=6)
+   qr.show()
+   return render(request, "accompanyMe/add_user.html")
 
 
 def remove(request):
