@@ -31,7 +31,6 @@ class Ride(models.Model):
     available = models.BooleanField()
 
     def __str__(self):
-
-        return f"[#{self.id}] {self.destination} {self.driver_email} {self.hour} {self.num_of_available_places} @{self.available}"
+        return f"[#{self.id}] {self.destination} {self.driver_email} {self.hour} {self.num_of_available_places}"
 
 

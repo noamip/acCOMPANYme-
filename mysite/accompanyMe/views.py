@@ -19,6 +19,11 @@ def user_list(request):
         'object_list': User.objects.order_by("-name"),
     })
 
+def ride_list(request):
+    return render(request, "accompanyMe/view_rides.html", {
+        'object_list': Ride.objects.order_by("-hour"),
+    })
+
 
 def adduser(request):
     return render(request, "accompanyMe/add_user.html")
@@ -52,11 +57,8 @@ def add_a_ride(request):
         destination = request.POST["destination"],
         hour = request.POST["hour"],
         date=request.POST["date"],
-        num_of_available_places = request.POST["numofavailableplaces"],
-        available=request.POST["hour"],
-
-
-
+        num_of_available_places = request.POST["num_of_available_places"],
+        available=request.POST["available"],
     )
     e.save()
     return HttpResponse("ride added successfuly")

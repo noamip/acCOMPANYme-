@@ -15,5 +15,5 @@ urlpatterns = [
     path('AddRide', views.add_a_ride, name='add_a_ride'),
     path('remove', views.remove, name="remove"),
     path('BarCode/', views.bar_code, name="bar_code"),
-
+    path('Rides/', views.ride_list, name="ride_list"),
 ]

@@ -1,0 +1,18 @@
+
+<h1> available rides</h1>
+<table border="1">
+    <tr>
+        <th>driver name</th>
+        <th>destination</th>
+        <th>hour</th>
+    </tr>
+    {% for object in object_list %}
+        <tr>
+            <td>{{ object.driver_email }}</td>
+            <td>{{ object.destination }}</td>
+            <td>{{ object.hour }}</td>
+        </tr>
+    {% endfor %}
+</table>
+
+
