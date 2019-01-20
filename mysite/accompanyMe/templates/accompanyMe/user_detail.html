@@ -1,0 +1,9 @@
+<h1>
+    BUDGET BOSS: Expense #{{ object.id }}
+</h1>
+<ul>
+    <li><b>Date:</b> {{ object.date }}</li>
+    <li><b>Amount:</b> ${{ object.amount }}</li>
+    <li><b>Title:</b> {{ object.title }}</li>
+    <li><b>Description:</b> {{ object.description|linebreaks }}</li>
+</ul>

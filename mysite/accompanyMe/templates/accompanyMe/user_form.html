@@ -1,0 +1,9 @@
+<h1>Add Expense</h1>
+<form method="post" novalidate>
+    {% csrf_token %}
+    <ul>
+        {{ form.as_ul }}
+    </ul>
+
+    <button>Add</button>
+</form>

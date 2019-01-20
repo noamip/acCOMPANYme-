@@ -1,0 +1,27 @@
+<h1>
+    acCOMPANYme!
+</h1>
+<table border="1">
+    <tr>
+        <th>id</th>
+        <th>name</th>
+        <th>email</th>
+        <th>phoneNumber</th>
+    </tr>
+    {% for object in object_list %}
+        <tr>
+            <td>{{ object.id }}</td>
+            <td>{{ object.name }}</td>
+            <td>{{ object.email }}</td>
+            <td>
+                {{ object.phone_number }}
+                <!--<a href="{% url "accompanyMe:detail" object.id %}">{{ object.title }}</a>-->
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+
+<form action="add" method="POST">
+        {% csrf_token %}
+            <button type="submit">Add user</button>
+</form>
