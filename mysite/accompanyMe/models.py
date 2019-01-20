@@ -14,7 +14,7 @@ from django.db import models
 
 class Driver(models.Model):
     user_id=models.ForeignKey(User,on_delete=models.CASCADE)
-g    # user_email = models.EmailField()
+    # user_email = models.EmailField()
     carsize = models.IntegerField()
     # destination = models.TextField()
 
@@ -34,7 +34,6 @@ class Ride(models.Model):
     available = models.BooleanField()
 
     def __str__(self):
-
         return f"[#{self.id}] {self.destination} {self.driver_email} {self.hour} {self.num_of_available_places} @{self.available}"
 
 
