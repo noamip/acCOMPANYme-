@@ -8,8 +8,6 @@ import pyqrcode
 # from  models import Expense
 from .models import User, Driver, Ride
 
-
-
 def index(request):
     return render(request, "accompanyMe/index.html")
 
@@ -17,6 +15,11 @@ def index(request):
 def user_list(request):
     return render(request, "accompanyMe/user_list.html", {
         'object_list': User.objects.order_by("-name"),
+    })
+
+def ride_list(request):
+    return render(request, "accompanyMe/view_rides.html", {
+        'object_list': Ride.objects.order_by("-hour"),
     })
 
 
@@ -36,6 +39,9 @@ def add_a_user(request):  # ,name,email,phone
     return HttpResponse("user added successfuly")
 
 
+def adddriver(request):
+    return render(request, "accompanyMe/add_driver.html")
+
 def add_a_driver(request):  # ,name,email,phone
     e = Driver(
         # user_email = request.POST["useremail"],
@@ -46,6 +52,8 @@ def add_a_driver(request):  # ,name,email,phone
     e.save()
     return HttpResponse("driver added successfuly")
 
+def addride(request):
+    return render(request, "accompanyMe/add_ride.html")
 
 def add_a_ride(request):
     e = Ride(
@@ -53,19 +61,12 @@ def add_a_ride(request):
         destination = request.POST["destination"],
         hour = request.POST["hour"],
         date=request.POST["date"],
-        num_of_available_places = request.POST["numofavailableplaces"],
-        available=request.POST["hour"],
-
-
-
+        num_of_available_places = request.POST["num_of_available_places"],
+        available=request.POST["available"],
     )
     e.save()
     return HttpResponse("ride added successfuly")
 
-
-
-def add(request):
-    return render(request, "accompanyMe/add_user.html" )
 
 
 
@@ -73,12 +74,14 @@ def bar_code(request):
    qr = pyqrcode.create("https://repl.it/@ronnysherer/")
    qr.png("horn.png", scale=6)
    qr.show()
-   return render(request, "accompanyMe/add_user.html")
+   return HttpResponse("ok")
 
 
 def remove(request):
     User.objects.all().delete()
     return HttpResponse("remove")
+
+
 
 
 
