@@ -24,6 +24,8 @@ class Ride(models.Model):
     def __str__(self):
         return f"[#{self.id}] {self.destination} {self.driver_email} {self.hour} {self.num_of_available_places} @{self.available}"
 
+
+
 class BookedRide(models.Model):
     ride_id = models.ForeignKey(Ride, on_delete=models.CASCADE)
     # user_email = models.EmailField()
