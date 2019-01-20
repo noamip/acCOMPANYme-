@@ -1,18 +1,22 @@
 
 <h1> available rides</h1>
-<table border="1">
-    <tr>
-        <th>driver name</th>
-        <th>destination</th>
-        <th>hour</th>
-    </tr>
-    {% for object in object_list %}
-        <tr>
-            <td>{{ object.driver_email }}</td>
-            <td>{{ object.destination }}</td>
-            <td>{{ object.hour }}</td>
-        </tr>
-    {% endfor %}
-</table>
+<!--<table border="1">-->
+    <!--<tr>-->
+        <!--<th>driver name</th>-->
+        <!--<th>destination</th>-->
+        <!--<th>hour</th>-->
+    <!--</tr>-->
+       <form action="{% url 'accompanyMe:select_ride' %}" method="post" class="form-group">
+        {% csrf_token %}
+        {% for object in object_list %}
+           <input type="radio" name="object" value="male" checked> {{object}}<br>
+
+        {% endfor %}
+
+        <input type="submit" value="selectRide">
+       </form>
+
+
+
 
 

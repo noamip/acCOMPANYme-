@@ -2,8 +2,8 @@
 <html>
     <head>
         <title>Django Girls blog</title>
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <!--<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">-->
+        <!--<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">-->
       <!--  <link rel="stylesheet" href="{% static 'css/blog.css' %}">-->
     </head>
 
@@ -11,8 +11,7 @@
 
         <h1>add user</h1>
 
-        {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-
+        {{form.as_ul}}
         <form action="{% url 'accompanyMe:add_a_user' %}" method="post" class="form-group">
         {% csrf_token %}
            <!-- <input type="number" minlength="9" maxlength="9" name="id" required>-->
