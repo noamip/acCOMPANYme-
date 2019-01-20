@@ -6,6 +6,7 @@
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
       <!--  <link rel="stylesheet" href="{% static 'css/blog.css' %}">-->
     </head>
+
     <body>
 
         <h1>add user</h1>
@@ -15,10 +16,10 @@
         <form action="{% url 'accompanyMe:add_a_driver' %}" method="post" class="form-group">
         {% csrf_token %}
           <!--  <input type="number" minlength="9" maxlength="9" name="id" >-->
-            <input type="email" name="useremail" placeholder="enter email">
-            <input type="number" name="carsize" placeholder="enter car size">
-            <input type="text" name="destination" placeholder="enter destination">
-
+            <!--<input type="email" name="useremail" placeholder="enter email"><br/>-->
+            <input type="number" name="id" placeholder="enter user_id"><br/>
+            <input type="number" name="carsize" placeholder="enter car size"><br/>
+            <!--<input type="text" name="destination" placeholder="enter destination"><br/>-->
 
         <input type="submit" value="AddDriver">
         </form>

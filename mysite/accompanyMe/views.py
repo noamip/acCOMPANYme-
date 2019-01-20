@@ -1,24 +1,34 @@
+from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.shortcuts import render
 from django import forms
 from django.shortcuts import render, get_object_or_404, redirect
 
 # from  models import Expense
-from .models import User, Driver
+from .models import Driver
 
 
-def expense_list(request):
+def index(request):
+    return render(request, "accompanyMe/index.html")
+
+
+def user_list(request):
     return render(request, "accompanyMe/user_list.html", {
         'object_list': User.objects.order_by("-name"),
     })
 
 
+def adduser(request):
+    return render(request, "accompanyMe/add_user.html")
+
+
 def add_a_user(request):  # ,name,email,phone
     e = User(
         # id=request.POST["id"],
-        name=request.POST["name"],
+        username=request.POST["name"],
         email=request.POST["emailAddress"],
-        phone_number=request.POST["phone"]
+        password=request.POST["password"]
+        # phone_number=request.POST["phone"]
     )
     e.save()
     return HttpResponse("user added successfuly")
@@ -26,16 +36,13 @@ def add_a_user(request):  # ,name,email,phone
 
 def add_a_driver(request):  # ,name,email,phone
     e = Driver(
-        user_email = request.POST["useremail"],
-        carsize = request.POST["carsize"],
-        destination = request.POST["destination"],
+        # user_email = request.POST["useremail"],
+        user_id=request.POST["id"],
+        carsize=request.POST["carsize"],
+        # destination = request.POST["destination"],
     )
     e.save()
     return HttpResponse("driver added successfuly")
-
-
-def adduser(request):
-    return render(request, "accompanyMe/add_user.html")
 
 
 def adddriver(request):
@@ -47,12 +54,7 @@ def remove(request):
     return HttpResponse("remove")
 
 
-def expense_detail(request, pk):
-    o = get_object_or_404(User, pk=pk)
 
-    return render(request, "accompanyMe/user_detail.html", {
-        'object': o,
-    })
 
 #
 # class ContactUsForm(forms.Form):

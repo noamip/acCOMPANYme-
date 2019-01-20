@@ -1,6 +1,4 @@
-<h1>
-    acCOMPANYme!
-</h1>
+
 <table border="1">
     <tr>
         <th>id</th>
@@ -13,19 +11,11 @@
             <td>{{ object.id }}</td>
             <td>{{ object.name }}</td>
             <td>{{ object.email }}</td>
-            <td>
-                {{ object.phone_number }}
-                <!--<a href="{% url "accompanyMe:detail" object.id %}">{{ object.title }}</a>-->
-            </td>
+            <!--<td>-->
+                <!--{{ object.phone_number }}-->
+                <!--&lt;!&ndash;<a href="{% url "accompanyMe:detail" object.id %}">{{ object.title }}</a>&ndash;&gt;-->
+            <!--</td>-->
         </tr>
     {% endfor %}
 </table>
 
-<form action="add_user" method="POST">
-        {% csrf_token %}
-            <button type="submit">Add user</button>
-</form>
-<form action="add_driver" method="POST">
-        {% csrf_token %}
-            <button type="submit">Add Driver</button>
-</form>

@@ -10,7 +10,8 @@ class ExpensesTestCase(TestCase):
         e = User(
             name="noami",
             email="noamijofen@gmail.com",
-            phone_number="0548485512"
+            password="1234",
+            # phone_number="0548485512"
         )
         e.save()
 
