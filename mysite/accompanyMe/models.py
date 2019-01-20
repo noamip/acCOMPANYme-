@@ -18,5 +18,20 @@ class Driver(models.Model):
     carsize = models.IntegerField()
     # destination = models.TextField()
 
+
+
+
+class Ride(models.Model):
+    # user_id=models.IntegerField(primary_key=True)
+    driver_email = models.EmailField()
+    destination = models.TextField()
+    hour =  models.TimeField()
+    date = models.DateField()
+    num_of_available_places = models.IntegerField()
+    available = models.BooleanField()
+
     def __str__(self):
-        return f"[#{self.id}]  @{self.carsize}"
+
+        return f"[#{self.id}] {self.destination} {self.driver_email} {self.hour} {self.num_of_available_places} @{self.available}"
+
+
