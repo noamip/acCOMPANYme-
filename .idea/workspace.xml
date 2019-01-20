@@ -2,15 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="718b30d4-7557-4643-9e30-91ab975e0b5e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/mysite/accompanyMe/templates/accompanyMe/add_ride.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/hack.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/hack.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/accompanyMe/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/accompanyMe/migrations/0001_initial.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/accompanyMe/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/accompanyMe/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/accompanyMe/templates/accompanyMe/user_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/accompanyMe/templates/accompanyMe/user_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/accompanyMe/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/accompanyMe/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/accompanyMe/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/accompanyMe/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysite/accompanyMe/templates/accompanyMe/add_driver.html" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/accompanyMe/templates/accompanyMe/add_driver.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysite/accompanyMe/templates/accompanyMe/add_user.html" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/accompanyMe/templates/accompanyMe/add_user.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysite/accompanyMe/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/accompanyMe/tests.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -89,8 +83,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mysite/accompanyMe/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="441">
-              <caret line="33" column="129" selection-start-line="33" selection-start-column="129" selection-end-line="33" selection-end-column="129" />
+            <state relative-caret-position="170">
+              <caret line="10" column="52" lean-forward="true" selection-start-line="10" selection-start-column="52" selection-end-line="10" selection-end-column="52" />
             </state>
           </provider>
         </entry>
@@ -144,7 +138,7 @@
         <entry file="file://$PROJECT_DIR$/mysite/accompanyMe/templates/accompanyMe/add_driver.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="425">
-              <caret line="25" column="7" lean-forward="true" selection-end-line="25" selection-end-column="7" />
+              <caret line="26" column="7" lean-forward="true" selection-end-line="26" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -221,7 +215,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="15" />
     <option name="y" value="30" />
     <option name="width" value="1890" />
@@ -323,7 +317,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24925596" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -450,7 +443,7 @@
     <entry file="file://$PROJECT_DIR$/mysite/accompanyMe/templates/accompanyMe/add_driver.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
-          <caret line="25" column="7" lean-forward="true" selection-end-line="25" selection-end-column="7" />
+          <caret line="26" column="7" lean-forward="true" selection-end-line="26" selection-end-column="7" />
         </state>
       </provider>
     </entry>
@@ -497,8 +490,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/mysite/accompanyMe/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="441">
-          <caret line="33" column="129" selection-start-line="33" selection-start-column="129" selection-end-line="33" selection-end-column="129" />
+        <state relative-caret-position="170">
+          <caret line="10" column="52" lean-forward="true" selection-start-line="10" selection-start-column="52" selection-end-line="10" selection-end-column="52" />
         </state>
       </provider>
     </entry>
