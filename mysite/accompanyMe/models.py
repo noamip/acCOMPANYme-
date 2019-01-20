@@ -17,8 +17,7 @@ class Driver(models.Model):
     carsize = models.IntegerField()
     destination = models.TextField()
 
-    def __str__(self):
-        return f"[#{self.id}] {self.user_id} @{self.carsize} @{self.destination}"
+
 
 
 class Ride(models.Model):
