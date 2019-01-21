@@ -138,7 +138,7 @@ def cancel_ride(request):
     assert False, (request.POST.get('ride'), request.user)
     # o = get_object_or_404(Ride, pk=request.POST.get("id"))
     # o.delete()
-    # return HttpResponse(request.POST)
+    # return HttpResponse( request.POST)
     return render(request, "accompanyMe/status.html", {'msg': "canceled", })
     # return HttpResponse("canceled")
 
