@@ -31,7 +31,9 @@
                     <img src="{% url "accompanyMe:bar_code" object.id %}"/>
                 </td>
                 <td>
-                    {{ object.id }}
+                    <a href="{% url "accompanyMe:detail" object.id %}">
+                        {{ object.id }}
+                    </a>
                 </td>
                 <td>
                     {{ object.destination }}

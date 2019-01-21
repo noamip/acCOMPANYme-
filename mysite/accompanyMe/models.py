@@ -9,32 +9,31 @@ class MyUser(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     phonenumber = models.IntegerField()
 
+
 # request.user.driver
 
 
 class Ride(models.Model):
     # user_id=models.IntegerField(primary_key=True)
-    driver_email = models.EmailField()
+    # driver_email = models.EmailField()
+    driver=models.ForeignKey(User,on_delete=models.CASCADE)
     destination = models.TextField()
     hour = models.TimeField()
     date = models.DateField()
     num_of_available_places = models.IntegerField()
+
     # available = models.BooleanField()
 
     def get_absolute_url(self):
         return reverse("expenses:detail", args=(self.id,))
 
     def __str__(self):
-        return f"[#{self.id}] {self.destination} {self.driver_email} {self.hour} {self.num_of_available_places} @{self.available}"
+        return f"[#{self.id}] {self.destination} {self.driver} {self.hour} {self.num_of_available_places} "
 
 
 class BookedRide(models.Model):
     ride_id = models.ForeignKey(Ride, on_delete=models.CASCADE)
-    # user_email = models.EmailField()
-    user_email = models.EmailField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     #
     # class Meta:
     #     unique_together = ( ('ride_id', 'user_email'),)
-
-
-

@@ -4,18 +4,13 @@
            add user
        {% endblock %}
 {% block content %}
-        {{form.as_ul}}
-        <form action="{% url 'accompanyMe:add_a_user' %}" method="post" class="form-group">
-        {% csrf_token %}
-            <input type="text" name="name" placeholder="enter full name"><br/>
-            <input type="email" name="emailAddress" placeholder="enter email"><br/>
-            <input type="password" name="password" placeholder="enter password"><br/>
-            <input type="phonenumber" name="phonenumber" placeholder="enter phonenumber"><br/>
-            <!--<input type="number" name="phone" placeholder="enter phone number"><br/>-->
+        <form action="{% url 'accompanyMe:add_user' %}" method="post" class="form-group">
+            {% csrf_token %}
 
+            {{ form.as_p }}
 
+            <input type="submit" value="AddUser">
 
-        <input type="submit" value="AddUser">
         </form>
     {% endblock %}
 

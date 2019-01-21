@@ -24,20 +24,38 @@
  <a class="navbar-brand" href="#">acCOMPANY me!</a>
 </nav>
 <ul class="nav_ul">
-    <li class="nav_li"><a class="active" href="{% url "accompanyMe:ride_list" %}">Home</a></li>
-    <li class="nav_li"><a href="add_user" >Add user</a></li>
-    <li class="nav_li"><a href="{% url "accompanyMe:add_ride" %}" >Add ride</a></li>
-    <li class="nav_li"><a href="Cancel" >Cancel Ride</a></li>
-    <li class="nav_li"><a href="#about">About</a></li>
+    <li class="nav_li"><a class="active" href="{% url 'accompanyMe:ride_list' %}"> Home</a></li>
+    <li class="nav_li"><a   href="{% url 'accompanyMe:add_user' %} "> Add user</a></li>
+    <li class="nav_li"><a   href="{% url 'accompanyMe:add_ride' %}" > Add ride</a></li>
+    <li class="nav_li"><a   href="{% url 'accompanyMe:Cancel' %} "> Cancel Ride</a></li>
+     <li class="nav_li"><a   href="{% url 'accompanyMe:UserCancel' %} "> User Cancel Ride</a></li>
 </ul>
 
 <nav class="navbar navbar-dark bg-dark">
 
 
-  <a class="navbar-brand" href="#">acCOMPANY me!</a>
+  <a class="navbar-brand" href="#">acCOMPANY me! </a>
+
+    {% if user.is_authenticated %}
+  Hi {{ user.username }}!
+  <p><a href="{% url 'logout' %}">logout</a></p>
+{% else %}
+  <p>You are not logged in</p>
+  <a href="{% url 'login' %}">login</a>
+{% endif %}
 </nav>
 
 <div class="container-fluid">
+    {% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+        {{ message }}
+    </li>
+    {% endfor %}
+</ul>
+{% endif %}
     {% block content %}
         DEFAULT CONTENT
     {% endblock %}

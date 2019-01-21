@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}
+ User Cancel Ride
+{% endblock %}
+
+{% block content %}
+
+    <form action="{% url 'accompanyMe:user_cancel_ride' %}" method="post">
+        {% csrf_token %}
+        <ul>
+        {% for choice in objects %}
+            <li>
+          <input type="radio" name="user_ride" id="id_{{choice.id}}" value="{{choice.id}}"/>
+                <label for="id_{{choice.id}}">
+
+                {{ choice.ride_id.destination }} {{ choice.ride_id.hour }}
+                </label>
+
+            </li>
+        {% endfor %}
+        </ul>
+         <input type="submit" value="CancelRide"/>
+    </form>
+
+{% endblock %}

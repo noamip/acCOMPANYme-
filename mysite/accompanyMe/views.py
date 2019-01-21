@@ -1,24 +1,26 @@
+from django.contrib import messages
 from django.contrib.auth.models import User
 from django.forms import RadioSelect
 from django.http import HttpResponse
 from django import forms
 from django.shortcuts import render, get_object_or_404, redirect
 import pyqrcode
+from django.views.generic import FormView
+
 from .models import User, Ride, BookedRide, MyUser
 from django.conf import settings
-
-import client as client
-from twilio.rest import Client
+import datetime
 
 
 # Twilio phone number goes here. Grab one at https://twilio.com/try-twilio
 # and use the E.164 format, for example: "+12025551234"
 
 
-def dial_numbers(numbers_list,msg):
+def dial_numbers(numbers_list, msg):
     """Dials one or more phone numbers from a Twilio phone number."""
     # list of one or more phone numbers to dial, in "+19732644210" format
-    for number in numbers_to_message:
+    for number in numbers_list:
+        print("Dialing",number)
         settings.CLIENT.messages.create(
             body=msg,
             from_=settings.TWILIO_PHONE_NUMBER,
@@ -44,8 +46,10 @@ def user_list(request):
 
 
 def ride_list(request):
+    curr_date = datetime.date.today()
     return render(request, "accompanyMe/view_rides.html", {
-        'object_list': Ride.objects.all().filter(num_of_available_places__gt=0).order_by('date').order_by('hour'),
+        'object_list': Ride.objects.all().filter(num_of_available_places__gt=0, date=curr_date).order_by(
+            'date').order_by('hour'),
     })
 
 
@@ -56,63 +60,92 @@ def booked_ride_list(request):
 
 
 # =================adding to dbs======================
-def adduser(request):
-    return render(request, "accompanyMe/add_user.html")
+
+class NewUserForm(forms.Form):
+    username = forms.CharField(max_length=100)
+    email = forms.EmailField(max_length=100)
+    password = forms.CharField(max_length=100, widget=forms.PasswordInput)
+    phonenumber = forms.CharField(max_length=100)
 
 
-def add_a_user(request):  # ,name,email,phone
-    e = User(
-        username=request.POST["name"],
-        email=request.POST["emailAddress"],
-        password=request.POST["password"]
-        # phone_number=request.POST["phone"]
-    )
-    e.save()
-    e1 = MyUser(
-        user_id=e.id,
-        phonenumber=request.POST["phonenumber"],
-    )
-    e1.save()
+class NewUserView(FormView):
+    form_class = NewUserForm
+    template_name = "accompanyMe/add_user.html"
 
-    return render(request, "accompanyMe/status.html", {'msg': "user added successfuly", })
-    # return HttpResponse("user added successfuly")
-
-
-def adddriver(request):
-    return render(request, "accompanyMe/add_driver.html")
+    def form_valid(self, form):
+        e = User.objects.create_user(
+            username=form.cleaned_data["username"],
+            email=form.cleaned_data["email"],
+            password=form.cleaned_data["password"]
+        )
+        e1 = MyUser(
+            user_id=e.id,
+            phonenumber=form.cleaned_data["phonenumber"],
+        )
+        e1.save()
+        messages.success(self.request, "")
+        return redirect("accompanyMe:add_user")
 
 
-def add_a_driver(request):  # ,name,email,phone
-    e = MyUser(
-        user_id=request.POST["id"],
-        phonenumber=request.POST["phonenumber"],
-    )
-    e.save()
-    return render(request, "accompanyMe/status.html", {'msg': "driver added successfuly", })
-    # return HttpResponse("driver added successfuly")
+
+# def adddriver(request):
+#     return render(request, "accompanyMe/add_driver.html")
+#
+#
+# def add_a_driver(request):  # ,name,email,phone
+#     e = MyUser(
+#         user_id=request.POST["id"],
+#         phonenumber=request.POST["phonenumber"],
+#     )
+#     e.save()
+#     return render(request, "accompanyMe/status.html", {'msg': "driver added successfuly", })
+#     # return HttpResponse("driver added successfuly")
 
 
-def addride(request):
-    return render(request, "accompanyMe/add_ride.html")
+
+class NewRideForm(forms.Form):
+    destination = forms.CharField()
+    hour = forms.TimeField()
+    date = forms.DateField()
+    num_of_available_places = forms.IntegerField()
 
 
-def add_a_ride(request):
-    e = Ride(
-        driver_email=request.POST["driveremail"],
-        destination=request.POST["destination"],
-        hour=request.POST["hour"],
-        date=request.POST["date"],
-        num_of_available_places=request.POST["num_of_available_places"],
-    )
-    e.save()
-    return render(request, "accompanyMe/status.html", {'msg': "ride added successfuly", })
-    # return HttpResponse("ride added successfuly")
+class NewRideView(FormView):
+    form_class = NewRideForm
+    template_name = "accompanyMe/add_ride.html"
+
+    def form_valid(self, form):
+        e = Ride(
+            driver=self.request.user,
+            destination=form.cleaned_data["destination"],
+            hour=form.cleaned_data["hour"],
+            date=form.cleaned_data["date"],
+            num_of_available_places=form.cleaned_data["num_of_available_places"],
+        )
+        e.save()
+        messages.success(self.request, "")
+        return redirect("accompanyMe:add_ride")
+# def addride(request):
+#     return render(request, "accompanyMe/add_ride.html")
+
+
+# def add_a_ride(request):
+#     e = Ride(
+#         driver=request.user,
+#         destination=request.POST["destination"],
+#         hour=request.POST["hour"],
+#         date=request.POST["date"],
+#         num_of_available_places=request.POST["num_of_available_places"],
+#     )
+#     e.save()
+#     return render(request, "accompanyMe/status.html", {'msg': "ride added successfuly", })
+#     # return HttpResponse("ride added successfuly")
 
 
 # ================details=====================
 def ride_detail(request, pk):
     o = get_object_or_404(Ride, pk=pk)
-    user = get_object_or_404(User, email=request.user.email)
+    # user = get_object_or_404(User, email=request.user.email)
     if o.num_of_available_places == 0:
         return render(request, "accompanyMe/status.html", {'msg': "ride is full!", })
         # return HttpResponse("ride is full!!!")
@@ -120,11 +153,15 @@ def ride_detail(request, pk):
     o.save()
     e = BookedRide(
         ride_id=o,
-        user_email="noamijofen@gmail.com"
+        # user_email=request.user.email
+        user=request.user
     )
     e.save()
+    user = get_object_or_404(User, email=request.user.email)
+    number = user.myuser.phonenumber
+    print("Dialing:", number)
+    dial_numbers([number], f"your ride to {o.destination} has been confirmed")
     return render(request, "accompanyMe/status.html", {'msg': "ride selected successfuly", })
-    # return HttpResponse("ride selected successfuly")
 
 
 def bar_code(request, pk):
@@ -137,33 +174,53 @@ def bar_code(request, pk):
     return HttpResponse(image_data, content_type="image/png")
 
 
-def remove(request):
-    BookedRide.objects.all().delete()
-    return HttpResponse("remove")
+# def remove(request):
+#     # user_name = ["ron", 'messy', 'omry', 'israel']
+#     #     # email = ["ron@gmail.com", 'messy@gmail.com', 'omry@gmail.com', 'israel@gmail.com']
+#     #     # passw = ['ronron123', 'messymessy123', 'omryomry123', 'israelisrael123']
+#     #     # phone = ['0583211223', '0583168008', '0556801421', '0556801421']
+#     #     # for i, user in enumerate(user_name):
+#     #     #     e = User.objects.create_user(
+#     #     #         username=user,
+#     #     #         email=email[i],
+#     #     #         password=passw[i]
+#     #     #     )
+#     #     #     e1 = MyUser(
+#     #     #         user_id=e.id,
+#     #     #         phonenumber=phone[i],
+#     #     #     )
+#     #     #     e1.save()
+#     return HttpResponse("remove")
+
 
 
 def cancel(request):
-    o = Ride.objects.filter(driver_email=request.user.email).distinct()
+    o = Ride.objects.filter(driver=request.user).distinct()
     return render(request, "accompanyMe/cancel_form.html", {'objects': o, })
 
 
 def cancel_ride(request):
-    # assert False, (request.POST.get('ride'), request.user)
+    qs = BookedRide.objects.filter(ride_id__id=request.POST.get('ride')).distinct()
+    phones=[o.user.myuser.phonenumber for o in qs]
+    dial_numbers(phones, f"your ride to {{ride_id_destination}} has been canceled")
     o = get_object_or_404(Ride, pk=request.POST.get('ride'))
     o.delete()
-    users = BookedRide.objects.filter(ride_id__id=request.POST.get('ride')).valuelist('user_email').distinct()
-    user_phone=[user.MyUser.phonenumber for user in users]
-    dial_numbers(user_phone,f"your ride to {{ride_id_destination}} has been canceled")
     return render(request, "accompanyMe/status.html", {'msg': "canceled successfully", })
 
 
-# ================forms==================
-# class CancelForm(forms.Form):
-#     o = BookedRide.objects.all().filter(user_email="noamijofen@gmail.com")
-#     rides = forms.ChoiceField(widget=RadioSelect(), choices=[(j, obj.ride_id.id) for j, obj in enumerate(o)])
+def user_cancel(request):
+    qs = BookedRide.objects.filter(user=request.user).distinct()
+    return render(request, "accompanyMe/user_cancel_form.html", {'objects': qs, })
 
 
-class UserForm(forms.Form):
-    name = forms.CharField(max_length=100)
-    email = forms.EmailField()
-    password = forms.PasswordInput()
+def user_cancel_ride(request):
+    qs =Ride.objects.filter(id=request.POST.get('user_ride')).distinct()
+    print("qs",qs)
+    for o in qs:
+        o.num_of_available_places= o.num_of_available_places+1
+        print("o", o)
+
+    obj= BookedRide.objects.filter(user=request.user,ride_id_id=request.POST.get('user_ride'))
+    print("obj", obj)
+    obj.delete()
+    return render(request, "accompanyMe/status.html", {'msg': "user ride canceled successfully", })
