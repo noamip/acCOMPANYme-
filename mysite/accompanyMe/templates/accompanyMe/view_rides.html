@@ -27,15 +27,7 @@
         {% for object in object_list %}
             <tr class="info">
                 <td>
-                    <!--<a href="{% url "accompanyMe:bar_code" object.id %}">-->
-                        <!--#{{ object.id }}-->
-                    <!--</a>-->
-                    <image src="{% url "accompanyMe:bar_code" object.id %}"></image>
-
-                    <!--<a href="{% url "accompanyMe:detail" object.id %}">-->
-                        <!--#{{ object.id }}-->
-                    <!--</a>-->
-
+                    <img src="{% url "accompanyMe:bar_code" object.id %}"/>
                 </td>
                 <td>
                     {{ object.id }}

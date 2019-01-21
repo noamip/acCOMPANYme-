@@ -5,9 +5,16 @@
 {% endblock %}
 
 {% block content %}
-    {% csrf_token %}
 
-        {{form.as_ul}}
-        <button>Cancel</button>
+    <form action="{% url 'accompanyMe:cancel_ride' %}" method="post">
+        {% csrf_token %}
+        {% for choice in objects %}
+          <!--{{ choice.choice_label }}-->
+          <input type="radio" name="id"/>{{ choice}}<br/>
+    {% endfor %}
+         <input type="submit" value="CancelRide"/>
+    </form>
+
+
 
 {% endblock %}

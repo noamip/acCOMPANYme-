@@ -1,35 +1,13 @@
+
 {% extends "base.html" %}
-
-{% block title %}
-    Add New Expense
-{% endblock %}
-
+{% block title %}Home{% endblock %}
 {% block content %}
-<!--<h1>-->
-    <!--acCOMPANY me!-->
-<!--</h1>-->
-<form action="add_user" method="POST">
-        {% csrf_token %}
-            <button type="submit">Add user</button>
-</form>
-
-<form action="add_ride" method="POST">
-        {% csrf_token %}
-            <button type="submit">Add Ride</button>
-</form>
-
-<form action="Rides" method="POST">
-        {% csrf_token %}
-            <button type="submit">View Rides</button>
-</form>
-<form action="BRides" method="POST">
-        {% csrf_token %}
-            <button type="submit">View Booked Rides</button>
-</form>
-<form action="Cancel" method="POST">
-        {% csrf_token %}
-            <button type="submit">Cancel Ride</button>
-</form>
-
+{% if user.is_authenticated %}
+  Hi {{ user.username }}!
+  <p><a href="{% url 'logout' %}">logout</a></p>
+{% else %}
+  <p>You are not logged in</p>
+  <a href="{% url 'login' %}">login</a>
+{% endif %}
 {% endblock %}
 
