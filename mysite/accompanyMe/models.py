@@ -1,3 +1,5 @@
+import pyqrcode
+from django.conf import settings
 from django.contrib.auth.models import User
 from django.db import models
 from django.forms import forms
@@ -29,6 +31,10 @@ class Ride(models.Model):
 
     def __str__(self):
         return f"[#{self.id}] {self.destination} {self.driver} {self.hour} {self.num_of_available_places} "
+
+    def qr_base64(self):
+        qr = pyqrcode.create(f"{settings.PUBLIC_URL}/{self.pk}")
+        return qr.png_as_base64_str(scale=6)
 
 
 class BookedRide(models.Model):

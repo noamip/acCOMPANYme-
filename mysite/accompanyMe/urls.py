@@ -8,7 +8,8 @@ app_name = "accompanyMe"
 
 urlpatterns = [
     path('', views.ride_list, name="ride_list"),
-    path('index', views.index, name="index"),
+    # path('Rides', views.ride_list, name="ride_list"),
+    # path('index', views.index, name="index"),
     path('list', views.user_list, name="list"),
     # path('Rides', views.ride_list, name="ride_list"),
     path('BRides', views.booked_ride_list, name="booked_ride_list"),

@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.forms import RadioSelect
 from django.http import HttpResponse
@@ -20,7 +21,7 @@ def dial_numbers(numbers_list, msg):
     """Dials one or more phone numbers from a Twilio phone number."""
     # list of one or more phone numbers to dial, in "+19732644210" format
     for number in numbers_list:
-        print("Dialing",number)
+        print("Dialing", number)
         settings.CLIENT.messages.create(
             body=msg,
             from_=settings.TWILIO_PHONE_NUMBER,
@@ -28,13 +29,8 @@ def dial_numbers(numbers_list, msg):
         )
 
 
-def index(request):
-    # user = authenticate(username='sara', email='sjofen94@gmail.com')
-    # if user is not None:
-    #     return HttpResponse("ok")
-    # else:
-    #     return HttpResponse("not ok")
-    return render(request, "accompanyMe/index.html")
+# def index(request):
+#     return render(request, "accompanyMe/index.html")
 
 
 # ====================lists======================
@@ -45,11 +41,25 @@ def user_list(request):
     })
 
 
+# def chunks(data, size):
+#     cur = []
+#     for x in data:
+#         cur.append(x)
+#         if len(cur) == size:
+#             yield cur
+#             cur = []
+#     if cur:
+#         yield cur
+
+
 def ride_list(request):
     curr_date = datetime.date.today()
+    qs = Ride.objects.all().filter(num_of_available_places__gt=0, date=curr_date).order_by('date').order_by('hour')
+    # return render(request, "accompanyMe/view_rides.html", {
+    #     'chunks': chunks(qs, 4),
+    # })
     return render(request, "accompanyMe/view_rides.html", {
-        'object_list': Ride.objects.all().filter(num_of_available_places__gt=0, date=curr_date).order_by(
-            'date').order_by('hour'),
+        'object_list': qs,
     })
 
 
@@ -87,22 +97,6 @@ class NewUserView(FormView):
         return redirect("accompanyMe:add_user")
 
 
-
-# def adddriver(request):
-#     return render(request, "accompanyMe/add_driver.html")
-#
-#
-# def add_a_driver(request):  # ,name,email,phone
-#     e = MyUser(
-#         user_id=request.POST["id"],
-#         phonenumber=request.POST["phonenumber"],
-#     )
-#     e.save()
-#     return render(request, "accompanyMe/status.html", {'msg': "driver added successfuly", })
-#     # return HttpResponse("driver added successfuly")
-
-
-
 class NewRideForm(forms.Form):
     destination = forms.CharField()
     hour = forms.TimeField()
@@ -125,6 +119,8 @@ class NewRideView(FormView):
         e.save()
         messages.success(self.request, "")
         return redirect("accompanyMe:add_ride")
+
+
 # def addride(request):
 #     return render(request, "accompanyMe/add_ride.html")
 
@@ -143,6 +139,7 @@ class NewRideView(FormView):
 
 
 # ================details=====================
+@login_required
 def ride_detail(request, pk):
     o = get_object_or_404(Ride, pk=pk)
     # user = get_object_or_404(User, email=request.user.email)
@@ -165,13 +162,14 @@ def ride_detail(request, pk):
 
 
 def bar_code(request, pk):
-    # url = reverse("my_view_name", args=(pk,))
-    # full_url = settings.PUBLIC_URL + url
-    # qr = pyqrcode.create(full_url)
-    qr = pyqrcode.create(f"{ settings.PUBLIC_URL}/{pk}")
+    qr = pyqrcode.create(f"{settings.PUBLIC_URL}/{pk}")
     qr.png(f"{pk}.png", scale=6)
     image_data = open(f"{pk}.png", "rb").read()
     return HttpResponse(image_data, content_type="image/png")
+    # qr = pyqrcode.create(f"{settings.PUBLIC_URL}/{pk}")
+    # qr.png(f"{pk}.png", scale=6)
+    # image_data = open(f"{pk}.png", "rb").read()
+    # return HttpResponse(image_data, content_type="image/png")
 
 
 # def remove(request):
@@ -193,7 +191,6 @@ def bar_code(request, pk):
 #     return HttpResponse("remove")
 
 
-
 def cancel(request):
     o = Ride.objects.filter(driver=request.user).distinct()
     return render(request, "accompanyMe/cancel_form.html", {'objects': o, })
@@ -201,7 +198,7 @@ def cancel(request):
 
 def cancel_ride(request):
     qs = BookedRide.objects.filter(ride_id__id=request.POST.get('ride')).distinct()
-    phones=[o.user.myuser.phonenumber for o in qs]
+    phones = [o.user.myuser.phonenumber for o in qs]
     dial_numbers(phones, f"your ride to {{ride_id_destination}} has been canceled")
     o = get_object_or_404(Ride, pk=request.POST.get('ride'))
     o.delete()
@@ -214,13 +211,13 @@ def user_cancel(request):
 
 
 def user_cancel_ride(request):
-    qs =Ride.objects.filter(id=request.POST.get('user_ride')).distinct()
-    print("qs",qs)
+    qs = Ride.objects.filter(id=request.POST.get('user_ride')).distinct()
+    print("qs", qs)
     for o in qs:
-        o.num_of_available_places= o.num_of_available_places+1
+        o.num_of_available_places = o.num_of_available_places + 1
         print("o", o)
 
-    obj= BookedRide.objects.filter(user=request.user,ride_id_id=request.POST.get('user_ride'))
+    obj = BookedRide.objects.filter(user=request.user, ride_id_id=request.POST.get('user_ride'))
     print("obj", obj)
     obj.delete()
     return render(request, "accompanyMe/status.html", {'msg': "user ride canceled successfully", })

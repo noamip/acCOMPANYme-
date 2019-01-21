@@ -1,77 +1,80 @@
-html
-{
-    width:100%;
-   height:100%;
+html {
+    width: 100%;
+    height: 100%;
 }
-body
-{
-   background-color: lightblue;
-   text-align:center;
-   width:100%;
-   height:100%
-   ;margin:0;
+
+body {
+    background-color: white;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    margin: 0;
 }
 
 .nav_ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #333;
-  position: fixed;
-  top: 0;
-  width: 100%;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    position: fixed;
+    top: 0;
+    width: 100%;
 }
 
 .nav_li {
-  float: left;
+    float: left;
 }
 
 .nav_li a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
 }
 
 .nav_li a:hover:not(.active) {
-  background-color: #111;
-}
-
-.active {
-  background-color: #4CAF50;
+    background-color: #111;
 }
 
 
-form
+form {
+    margin-top: 10%;
+}
+
+button {
+    margin-top: 3px;
+}
+.mytr
 {
-    margin-top:10%;
+    margin-top: 7%;
+    margin-bottom: 7%;
+    border-color: #7abaff;
 }
+/*.card {*/
+    /*!* Add shadows to create the "card" effect *!*/
+    /*margin-top: 10px;*/
+    /*width: 20%;*/
+    /*height: 20%;*/
+    /*margin-left: 40%;*/
+    /*text-align: center;*/
+    /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);*/
+    /*transition: 0.3s;*/
+    /*border-radius: 5px; !* 5px rounded corners *!*/
+/*}*/
 
-button
-{
-     margin-top:3px;
-}
-
-.card {
-  /* Add shadows to create the "card" effect */
-  margin-top:10px;
-  width:20%;
-  height:20%;
-  margin-left:40%;
-  text-align:center;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
-  border-radius: 5px; /* 5px rounded corners */
-}
-
-/* On mouse-over, add a deeper shadow */
-.card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-}
+/*!* On mouse-over, add a deeper shadow *!*/
+/*.card:hover {*/
+    /*box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);*/
+/*}*/
 
 /* Add some padding inside the card container */
-.container {
-  padding: 2px 16px;
+/*.container {*/
+    /*padding: 2px 16px;*/
+/*}*/
+
+.bar {
+    width: 35%;
+    height: 40%;
 }

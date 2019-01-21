@@ -8,7 +8,7 @@
 
     <form action="{% url 'accompanyMe:cancel_ride' %}" method="post">
         {% csrf_token %}
-        <ul>
+        <ul class="list-unstyled">
         {% for choice in objects %}
             <li>
           <input type="radio" name="ride" id="id_{{choice.id}}" value="{{choice.id}}"/>

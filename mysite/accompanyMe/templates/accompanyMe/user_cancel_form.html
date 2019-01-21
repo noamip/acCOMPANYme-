@@ -5,10 +5,10 @@
 {% endblock %}
 
 {% block content %}
-
+    <h1> User Cancel Ride</h1>
     <form action="{% url 'accompanyMe:user_cancel_ride' %}" method="post">
         {% csrf_token %}
-        <ul>
+        <ul class="list-unstyled" >
         {% for choice in objects %}
             <li>
           <input type="radio" name="user_ride" id="id_{{choice.id}}" value="{{choice.id}}"/>

@@ -2,55 +2,54 @@
 {% load static %}
 <!--<html lang="en">-->
 <!--<head>-->
-    <!--<meta charset="utf-8">-->
-    <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
-    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">-->
-    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
-    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>-->
+<!--<meta charset="utf-8">-->
+<!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">-->
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
+<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>-->
 <!--</head>-->
 {% block content %}
 
-<h1 xmlns:accompanyMe="http://www.w3.org/1999/xhtml" xmlns:accompanyMe="http://www.w3.org/1999/xhtml"> Scan the QR to join the ride</h1>
- <table class="table table-hover">
+<h1 >join the ride</h1>
+    <meta http-equiv="refresh" content="3">
+<table class="table table-hover">
 
-        <!--<tr>-->
+   <tr class="success">
+       <th>Code</th>
+       <th>ID</th>
+       <th>Destination</th>
+       <th>Date</th>
+       <th>Hour</th>
+       <th>Num Available places</th>
+   </tr>
+   {% for object in object_list %}
+       <tr class="info">
+           <td>
 
-
-        <tr  class="success">
-            <th>Code</th>
-            <th>ID</th>
-            <th>Destination</th>
-            <th>Date</th>
-            <th>Hour</th>
-            <th>Num Available places</th>
-        </tr>
-        {% for object in object_list %}
-            <tr class="info">
-                <td>
-
-                    <img src="{% url "accompanyMe:bar_code" object.id %}"/>
-                </td>
-                <td>
-                    <a href="{% url "accompanyMe:detail" object.id %}">
-                        {{ object.id }}
-                    </a>
-                </td>
-                <td>
-                    {{ object.destination }}
-                </td>
-                <td>
-                    {{ object.date }}
-                </td>
-                <td>
-                    {{ object.hour }}
-                </td>
-                  <td>
-                    {{ object.num_of_available_places }}
-                </td>
-            </tr>
-        {% endfor %}
-   {% endblock %}
-     {% load static %}
-
+               <!--<img width="90" height="90"-->
+               <!--src="{% url "accompanyMe:bar_code" object.id %}"/>-->
+               <img width="90" height="90" src="data:image/png;base64,{{object.qr_base64}}"/>
+           </td>
+           <td>
+               <a href="{% url "accompanyMe:detail" object.id %}">
+               {{ object.id }}
+               </a>
+           </td>
+           <td>
+               {{ object.destination }}
+           </td>
+           <td>
+               {{ object.date }}
+           </td>
+           <td>
+               {{ object.hour }}
+           </td>
+           <td>
+               {{ object.num_of_available_places }}
+           </td>
+       </tr>
+{% endfor %}
+</table>
 
 
+{% endblock %}
