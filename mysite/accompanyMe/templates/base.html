@@ -1,21 +1,68 @@
 {% load staticfiles %}
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <meta charset="utf-8">
+   <meta name="viewport"
+         content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="{% static "bootstrap/css/bootstrap.css" %}"/>
-    <link rel="stylesheet" href="{% static "style.css" %}"/>
+   <link rel="stylesheet" href="{% static "bootstrap/css/bootstrap.css" %}"/>
+   <link rel="stylesheet" href="{% static "style.css" %}"/>
 
-    <title>
-        {% block title %}
-            acCOMPANYme!
-        {% endblock %}
+   <title>
+       {% block title %}
+           acCOMPANYme!
+       {% endblock %}
 
-    </title>
+   </title>
+    <style>
+body {margin:0;}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover:not(.active) {
+  background-color: #111;
+}
+
+.active {
+  background-color: #4CAF50;
+}
+</style>
 </head>
 <body>
+
+<nav class="navbar navbar-dark bg-dark">
+
+
+ <a class="navbar-brand" href="#">acCOMPANY me!</a>
+</nav>
+<ul>
+    <li><a class="active" href="{% url "accompanyMe:ride_list" %}">Home</a></li>
+    <li><a href="add_user" >Add user</a></li>
+    <li><a href="{% url "accompanyMe:add_ride" %}" >Add ride</a></li>
+    <li><a href="Cancel" >Cancel Ride</a></li>
+    <li><a href="#about">About</a></li>
+</ul>
 
 <nav class="navbar navbar-dark bg-dark">
 
@@ -29,5 +76,9 @@
     {% endblock %}
 </div>
 
+
 </body>
 </html>
+
+
+
