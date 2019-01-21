@@ -5,9 +5,25 @@
 {% endblock %}
 
 {% block content %}
-    {% csrf_token %}
 
-        {{form.as_ul}}
-        <button>Cancel</button>
+    <form action="{% url 'accompanyMe:cancel_ride' %}" method="post">
+        {% csrf_token %}
+        <ul>
+        {% for choice in objects %}
+          <!--{{ choice.choice_label }}-->
+            <li>
+          <input type="radio" name="ride" id="id_{{choice.ride_id.id}}" value="{{choice.ride_id.id}}"/>
+                <label for="id_{{choice.ride_id.id}}">
+
+                {{ choice.ride_id.destination }} {{ choice.ride_id.hour }}
+                </label>
+
+            </li>
+        {% endfor %}
+        </ul>
+         <input type="submit" value="CancelRide"/>
+    </form>
+
+
 
 {% endblock %}

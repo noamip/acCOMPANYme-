@@ -5,10 +5,11 @@ from django.urls import reverse
 
 
 class Driver(models.Model):
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    # user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     phonenumber = models.IntegerField()
 
-
+# request.user.driver
 
 
 class Ride(models.Model):
@@ -23,16 +24,20 @@ class Ride(models.Model):
     def get_absolute_url(self):
         return reverse("expenses:detail", args=(self.id,))
 
-
     def __str__(self):
         return f"[#{self.id}] {self.destination} {self.driver_email} {self.hour} {self.num_of_available_places} @{self.available}"
-
 
 
 class BookedRide(models.Model):
     ride_id = models.ForeignKey(Ride, on_delete=models.CASCADE)
     # user_email = models.EmailField()
-    user_email =  models.EmailField()
+    user_email = models.EmailField()
+
+    # class Meta:
+    #     unique_together = (
+    #         ('ride_id', 'user_email'),
+    #     )
+
 
     # def __str__(self):
     #     return f"[ #{self.id}] {self.destination} {self.driver_email} {self.hour} {self.num_of_available_places}"

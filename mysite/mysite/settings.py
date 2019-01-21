@@ -25,7 +25,7 @@ SECRET_KEY = 'xdcrnol#s&f&5@79$%6=j1jx1k*gt3z#l-hhwt9cy7xa3vgre7'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'accompanyMe.apps.AccompanymeConfig',
 
     "django_extensions",
@@ -58,7 +59,7 @@ ROOT_URLCONF = 'mysite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -122,3 +123,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+LOGIN_REDIRECT_URL = '/'
+PUBLIC_URL='http://c2690d88.ngrok.io'
