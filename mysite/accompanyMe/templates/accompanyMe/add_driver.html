@@ -1,18 +1,18 @@
-{% load static %}
-{% extends "base.html" %}
-<!--<html>-->
-    <!--<head>-->
-        <title>Django Girls blog</title>
-        <!--<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">-->
-        <!--<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">-->
-      <!--  <link rel="stylesheet" href="{% static 'css/blog.css' %}">-->
-    <!--</head>-->
+<!--{% load static %}-->
+<!--{% extends "base.html" %}-->
+<!--&lt;!&ndash;<html>&ndash;&gt;-->
+    <!--&lt;!&ndash;<head>&ndash;&gt;-->
+        <!--<title>Django Girls blog</title>-->
+        <!--&lt;!&ndash;<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">&ndash;&gt;-->
+        <!--&lt;!&ndash;<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">&ndash;&gt;-->
+      <!--&lt;!&ndash;  <link rel="stylesheet" href="{% static 'css/blog.css' %}">&ndash;&gt;-->
+    <!--&lt;!&ndash;</head>&ndash;&gt;-->
 
-    <!--<body>-->
+    <!--&lt;!&ndash;<body>&ndash;&gt;-->
 
-        <h1>add Driver</h1>
+        <!--<h1>add Driver</h1>-->
 
-        {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+        <!--{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}-->
 
         <form action="{% url 'accompanyMe:add_a_driver' %}" method="post" >
         {% csrf_token %}
@@ -21,8 +21,15 @@
             <input type="number" name="id" placeholder="enter user_id"><br/>
             <input type="number" name="phonenumber" placeholder="enter phonenumber"><br/>
             <!--<input type="text" name="destination" placeholder="enter destination"><br/>-->
+        <!--<form action="{% url 'accompanyMe:add_a_driver' %}" method="post" >-->
+        <!--{% csrf_token %}-->
+          <!--&lt;!&ndash;  <input type="number" minlength="9" maxlength="9" name="id" >&ndash;&gt;-->
+            <!--&lt;!&ndash;<input type="email" name="useremail" placeholder="enter email"><br/>&ndash;&gt;-->
+            <!--<input type="number" name="id" placeholder="enter user_id"><br/>-->
+            <!--<input type="number" name="carsize" placeholder="enter car size"><br/>-->
+            <!--&lt;!&ndash;<input type="text" name="destination" placeholder="enter destination"><br/>&ndash;&gt;-->
 
-        <input type="submit" value="AddDriver">
-        </form>
-        </body>
-<!--</html>-->
+        <!--<input type="submit" value="AddDriver">-->
+        <!--</form>-->
+        <!--</body>-->
+<!--&lt;!&ndash;</html>&ndash;&gt;-->

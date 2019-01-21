@@ -9,6 +9,12 @@ from django.views.generic import CreateView
 from .models import User, Driver, Ride, BookedRide
 
 
+# from  models import Expense
+from .models import User, Ride, BookedRide
+#Driver
+
+
+
 def index(request):
     return render(request, "accompanyMe/index.html")
 
@@ -50,6 +56,7 @@ def add_a_user(request):  # ,name,email,phone
     )
     e1.save()
     return HttpResponse("user added successfuly")
+
 
 
 def adddriver(request):

@@ -8,9 +8,7 @@ class Driver(models.Model):
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     phonenumber = models.IntegerField()
 
- # user_email = models.EmailField()
 
-# destination = models.TextField()
 
 
 class Ride(models.Model):

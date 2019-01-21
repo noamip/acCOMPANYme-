@@ -1,15 +1,22 @@
 {% load static %}
 
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
 
-<h1> available rides</h1>
-<!--<table border="1">-->
-    <!--<tr>-->
-        <!--<th>driver name</th>-->
-        <!--<th>destination</th>-->
-        <!--<th>hour</th>-->
-    <!--</tr>-->
+
+<h1 xmlns:accompanyMe="http://www.w3.org/1999/xhtml" xmlns:accompanyMe="http://www.w3.org/1999/xhtml"> available rides</h1>
  <table class="table table-hover">
-        <tr>
+
+        <!--<tr>-->
+
+
+        <tr  class="success">
             <th>Code</th>
             <th>ID</th>
             <th>Destination</th>
@@ -18,12 +25,16 @@
             <th>Num Available places</th>
         </tr>
         {% for object in object_list %}
-            <tr>
+            <tr class="info">
                 <td>
                     <!--<a href="{% url "accompanyMe:bar_code" object.id %}">-->
                         <!--#{{ object.id }}-->
                     <!--</a>-->
                     <image src="{% url "accompanyMe:bar_code" object.id %}"></image>
+
+                    <!--<a href="{% url "accompanyMe:detail" object.id %}">-->
+                        <!--#{{ object.id }}-->
+                    <!--</a>-->
 
                 </td>
                 <td>
@@ -43,11 +54,7 @@
                 </td>
             </tr>
         {% endfor %}
-
-
-
 {% load static %}
-
 
 
 
