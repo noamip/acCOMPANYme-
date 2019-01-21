@@ -27,7 +27,8 @@
         {% for object in object_list %}
             <tr class="info">
                 <td>
-                    <image src="{% url "accompanyMe:bar_code" object.id %}"></image>
+
+                    <img src="{% url "accompanyMe:bar_code" object.id %}"/>
                 </td>
                 <td>
                     {{ object.id }}
