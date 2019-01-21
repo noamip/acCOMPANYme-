@@ -6,7 +6,7 @@ from django.urls import reverse
 
 class Driver(models.Model):
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
-    carsize = models.IntegerField()
+    phonenumber = models.IntegerField()
 
  # user_email = models.EmailField()
 
@@ -34,9 +34,7 @@ class Ride(models.Model):
 class BookedRide(models.Model):
     ride_id = models.ForeignKey(Ride, on_delete=models.CASCADE)
     # user_email = models.EmailField()
-    user_email = models.ForeignKey(User, on_delete=models.CASCADE)
-
-
+    user_email =  models.EmailField()
 
     # def __str__(self):
     #     return f"[ #{self.id}] {self.destination} {self.driver_email} {self.hour} {self.num_of_available_places}"

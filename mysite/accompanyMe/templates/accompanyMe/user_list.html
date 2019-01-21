@@ -4,6 +4,7 @@
         <th>id</th>
         <th>name</th>
         <th>email</th>
+        <th>phonenumber</th>
         <!--<th>phoneNumber</th>-->
     </tr>
     {% for object in object_list %}
@@ -11,6 +12,7 @@
             <td>{{ object.id }}</td>
             <td>{{ object.username }}</td>
             <td>{{ object.email }}</td>
+            <td>{{ object.phonenumber }}</td>
         </tr>
     {% endfor %}
 </table>

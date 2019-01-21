@@ -13,3 +13,15 @@
         {% csrf_token %}
             <button type="submit">Add Ride</button>
 </form>
+<form action="Rides" method="POST">
+        {% csrf_token %}
+            <button type="submit">View Rides</button>
+</form>
+<form action="BRides" method="POST">
+        {% csrf_token %}
+            <button type="submit">View Booked Rides</button>
+</form>
+<form action="Cancel" method="POST">
+        {% csrf_token %}
+            <button type="submit">Cancel Ride</button>
+</form>

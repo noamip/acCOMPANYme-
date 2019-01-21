@@ -10,6 +10,7 @@
     <!--</tr>-->
  <table class="table table-hover">
         <tr>
+            <th>Code</th>
             <th>ID</th>
             <th>Destination</th>
             <th>Date</th>
@@ -19,15 +20,20 @@
         {% for object in object_list %}
             <tr>
                 <td>
-                    <a href="{% url "ride:detail" object.id %}">
-                        #{{ object.id }}
-                    </a>
+                    <!--<a href="{% url "accompanyMe:bar_code" object.id %}">-->
+                        <!--#{{ object.id }}-->
+                    <!--</a>-->
+                    <image src="{% url "accompanyMe:bar_code" object.id %}"></image>
+
                 </td>
                 <td>
-                    {{ object.date }}
+                    {{ object.id }}
                 </td>
                 <td>
                     {{ object.destination }}
+                </td>
+                <td>
+                    {{ object.date }}
                 </td>
                 <td>
                     {{ object.hour }}

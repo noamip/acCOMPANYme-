@@ -1,0 +1,32 @@
+{% load static %}
+
+
+<h1> available rides</h1>
+<!--<table border="1">-->
+    <!--<tr>-->
+        <!--<th>driver name</th>-->
+        <!--<th>destination</th>-->
+        <!--<th>hour</th>-->
+    <!--</tr>-->
+ <table class="table table-hover">
+        <tr>
+            <th>ID</th>
+            <th>User Email</th>
+        </tr>
+        {% for object in object_list %}
+            <tr>
+                <td>
+                    {{ object.ride_id.id }}
+                </td>
+                <td>
+                    {{ object.user_email }}
+                </td>
+        {% endfor %}
+
+
+
+{% load static %}
+
+
+
+
