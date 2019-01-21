@@ -1,21 +1,35 @@
 {% load staticfiles %}
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <meta charset="utf-8">
+   <meta name="viewport"
+         content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="{% static "bootstrap/css/bootstrap.css" %}"/>
-    <link rel="stylesheet" href="{% static "style.css" %}"/>
+   <link rel="stylesheet" href="{% static "bootstrap/css/bootstrap.css" %}"/>
+   <link rel="stylesheet" href="{% static "style.css" %}"/>
 
-    <title>
-        {% block title %}
-            acCOMPANYme!
-        {% endblock %}
+   <title>
+       {% block title %}
+           acCOMPANYme!
+       {% endblock %}
 
-    </title>
+   </title>
+
 </head>
 <body>
+
+<nav class="navbar navbar-dark bg-dark">
+
+
+ <a class="navbar-brand" href="#">acCOMPANY me!</a>
+</nav>
+<ul class="nav_ul">
+    <li class="nav_li"><a class="active" href="{% url "accompanyMe:ride_list" %}">Home</a></li>
+    <li class="nav_li"><a href="add_user" >Add user</a></li>
+    <li class="nav_li"><a href="{% url "accompanyMe:add_ride" %}" >Add ride</a></li>
+    <li class="nav_li"><a href="Cancel" >Cancel Ride</a></li>
+    <li class="nav_li"><a href="#about">About</a></li>
+</ul>
 
 <nav class="navbar navbar-dark bg-dark">
 
@@ -29,5 +43,9 @@
     {% endblock %}
 </div>
 
+
 </body>
 </html>
+
+
+

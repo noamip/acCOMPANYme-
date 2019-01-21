@@ -1,7 +1,21 @@
 
 {% extends "base.html" %}
-{% block title %}Home{% endblock %}
+
+{% block title %}
+    acCOMPANY me!
+{% endblock %}
+
 {% block content %}
+
+<form action="BRides" method="POST">
+        {% csrf_token %}
+            <button type="submit">View Booked Rides</button>
+</form>
+<form action="Cancel" method="POST">
+        {% csrf_token %}
+            <button type="submit">Cancel Ride</button>
+</form>
+
 {% if user.is_authenticated %}
   Hi {{ user.username }}!
   <p><a href="{% url 'logout' %}">logout</a></p>
@@ -10,4 +24,5 @@
   <a href="{% url 'login' %}">login</a>
 {% endif %}
 {% endblock %}
+
 

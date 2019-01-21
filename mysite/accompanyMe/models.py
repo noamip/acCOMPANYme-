@@ -4,7 +4,7 @@ from django.forms import forms
 from django.urls import reverse
 
 
-class Driver(models.Model):
+class MyUser(models.Model):
     # user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     phonenumber = models.IntegerField()
@@ -19,7 +19,7 @@ class Ride(models.Model):
     hour = models.TimeField()
     date = models.DateField()
     num_of_available_places = models.IntegerField()
-    available = models.BooleanField()
+    # available = models.BooleanField()
 
     def get_absolute_url(self):
         return reverse("expenses:detail", args=(self.id,))
@@ -32,17 +32,9 @@ class BookedRide(models.Model):
     ride_id = models.ForeignKey(Ride, on_delete=models.CASCADE)
     # user_email = models.EmailField()
     user_email = models.EmailField()
-
+    #
     # class Meta:
-    #     unique_together = (
-    #         ('ride_id', 'user_email'),
-    #     )
+    #     unique_together = ( ('ride_id', 'user_email'),)
 
 
-    # def __str__(self):
-    #     return f"[ #{self.id}] {self.destination} {self.driver_email} {self.hour} {self.num_of_available_places}"
 
-# class UserForm(forms.ModelForm):
-#     class Meta:
-#         model = User
-#         fields = "__all__"

@@ -1,16 +1,9 @@
+{% extends "base.html" %}
 {% load static %}
-<html>
-    <head>
-        <title>Django Girls blog</title>
-        <!--<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">-->
-        <!--<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">-->
-      <!--  <link rel="stylesheet" href="{% static 'css/blog.css' %}">-->
-    </head>
-
-    <body>
-
-        <h1>add user</h1>
-
+ {% block title %}
+           add user
+       {% endblock %}
+{% block content %}
         {{form.as_ul}}
         <form action="{% url 'accompanyMe:add_a_user' %}" method="post" class="form-group">
         {% csrf_token %}
@@ -24,7 +17,5 @@
 
         <input type="submit" value="AddUser">
         </form>
+    {% endblock %}
 
-    </body>
-
-</html>

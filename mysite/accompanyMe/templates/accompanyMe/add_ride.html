@@ -1,14 +1,19 @@
+{% extends "base.html" %}
 {% load static %}
-<html>
-    <head>
-        <title>Django Girls blog</title>
-        <!--<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">-->
-        <!--<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">-->
-      <!--  <link rel="stylesheet" href="{% static 'css/blog.css' %}">-->
-    </head>
-    <body>
+<!--<html>-->
+    <!--<head>-->
+        <!--<title>Django Girls blog</title>-->
+        <!--&lt;!&ndash;<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">&ndash;&gt;-->
+        <!--&lt;!&ndash;<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">&ndash;&gt;-->
+      <!--&lt;!&ndash;  <link rel="stylesheet" href="{% static 'css/blog.css' %}">&ndash;&gt;-->
+    <!--</head>-->
+    <!--<body>-->
 
-        <h1>add Ride</h1>
+        {% block title %}
+           add ride
+       {% endblock %}
+        <!--<h1>add user</h1>-->
+{% block content %}
 
         {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
@@ -20,11 +25,12 @@
             <input type="text" name="destination" placeholder="enter destination">
             <input type="date" name="date" placeholder="enter destination">
             <input type="number" name="num_of_available_places" placeholder="enter num of available places">
-            <input type="text" name="available" placeholder="enter available">
+            <!--<input type="text" name="available" placeholder="enter available">-->
 
 
 
         <input type="submit" value="AddRide">
         </form>
-        </body>
-</html>
+  {% endblock %}
+        <!--</body>-->
+<!--</html>-->
