@@ -13,7 +13,6 @@ from django.conf import settings
 
 
 def index(request):
-
     # user = authenticate(username='sara', email='sjofen94@gmail.com')
     # if user is not None:
     #     return HttpResponse("ok")
@@ -60,7 +59,9 @@ def add_a_user(request):  # ,name,email,phone
         phonenumber=request.POST["phonenumber"],
     )
     e1.save()
-    return HttpResponse("user added successfuly")
+
+    return render(request, "accompanyMe/status.html", {'msg': "user added successfuly", })
+    # return HttpResponse("user added successfuly")
 
 
 def adddriver(request):
@@ -73,7 +74,8 @@ def add_a_driver(request):  # ,name,email,phone
         phonenumber=request.POST["phonenumber"],
     )
     e.save()
-    return HttpResponse("driver added successfuly")
+    return render(request, "accompanyMe/status.html", {'msg': "driver added successfuly", })
+    # return HttpResponse("driver added successfuly")
 
 
 def addride(request):
@@ -90,7 +92,8 @@ def add_a_ride(request):
         available=request.POST["available"],
     )
     e.save()
-    return HttpResponse("ride added successfuly")
+    return render(request, "accompanyMe/status.html", {'msg': "ride added successfuly", })
+    # return HttpResponse("ride added successfuly")
 
 
 # ================details=====================
@@ -98,7 +101,8 @@ def ride_detail(request, pk):
     o = get_object_or_404(Ride, pk=pk)
     user = get_object_or_404(User, email="noamijofen@gmail.com")
     if o.num_of_available_places == 0:
-        return HttpResponse("ride is full!!!")
+        return render(request, "accompanyMe/status.html", {'msg': "ride is full!", })
+        # return HttpResponse("ride is full!!!")
     o.num_of_available_places = o.num_of_available_places - 1
     o.save()
     e = BookedRide(
@@ -106,7 +110,8 @@ def ride_detail(request, pk):
         user_email="noamijofen@gmail.com"
     )
     e.save()
-    return HttpResponse("ride selected successfuly")
+    return render(request, "accompanyMe/status.html", {'msg': "ride selected successfuly", })
+    # return HttpResponse("ride selected successfuly")
 
 
 def bar_code(request, pk):
@@ -125,15 +130,17 @@ def remove(request):
 
 
 def cancel(request):
-    o = BookedRide.objects.all().filter(user_email="noamijofen@gmail.com").values_list('ride_id').distinct()
+    o = BookedRide.objects.all().filter(user_email="noamijofen@gmail.com").distinct()
     return render(request, "accompanyMe/cancel_form.html", {'objects': o, })
 
 
 def cancel_ride(request):
+    assert False, (request.POST.get('ride'), request.user)
     # o = get_object_or_404(Ride, pk=request.POST.get("id"))
     # o.delete()
     # return HttpResponse(request.POST)
-    return HttpResponse("canceled")
+    return render(request, "accompanyMe/status.html", {'msg': "canceled", })
+    # return HttpResponse("canceled")
 
 
 # def cancel(request):

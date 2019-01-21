@@ -8,10 +8,19 @@
 
     <form action="{% url 'accompanyMe:cancel_ride' %}" method="post">
         {% csrf_token %}
+        <ul>
         {% for choice in objects %}
           <!--{{ choice.choice_label }}-->
-          <input type="radio" name="id"/>{{ choice}}<br/>
-    {% endfor %}
+            <li>
+          <input type="radio" name="ride" id="id_{{choice.ride_id.id}}" value="{{choice.ride_id.id}}"/>
+                <label for="id_{{choice.ride_id.id}}">
+
+                {{ choice.ride_id.destination }} {{ choice.ride_id.hour }}
+                </label>
+
+            </li>
+        {% endfor %}
+        </ul>
          <input type="submit" value="CancelRide"/>
     </form>
 
