@@ -2,7 +2,7 @@
 
 
 {% block content %}
-    <h1 class="form_h1"> User Cancel Ride</h1>
+    <p class="form_h1"> User Cancel Ride</p>
 
     <form action="{% url 'accompanyMe:user_cancel_ride' %}" method="post">
         {% csrf_token %}

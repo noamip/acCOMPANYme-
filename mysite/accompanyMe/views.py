@@ -240,3 +240,19 @@ def user_cancel_ride(request):
     print("obj", obj)
     obj.delete()
     return render(request, "accompanyMe/status.html", {'msg': "user ride canceled successfully", })
+
+
+
+def add_ride_bar_code(request):
+    print("in add user bc!!!")
+    qr = pyqrcode.create(f"{settings.PUBLIC_URL}/add_ride")
+    qr.png("add_ride.png", scale=6)
+    image_data = open("add_ride.png", "rb").read()
+    return HttpResponse(image_data, content_type="image/png")
+
+def audio_bar_code(request):
+    print("in add user bc!!!")
+    qr = pyqrcode.create(f"{settings.PUBLIC_URL}/audio")
+    qr.png("audio.png", scale=6)
+    image_data = open("audio.png", "rb").read()
+    return HttpResponse(image_data, content_type="image/png")

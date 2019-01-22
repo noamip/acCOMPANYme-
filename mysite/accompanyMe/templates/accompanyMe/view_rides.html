@@ -1,59 +1,141 @@
-{% extends "base.html" %}
-{% load static %}
+
+{% load staticfiles %}
+<html>
+<head>
+       <meta charset="utf-8">
+   <meta name="viewport"
+         content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+   <link rel="stylesheet" href="{% static "bootstrap/css/bootstrap.css" %}"/>
+   <link rel="stylesheet" href="{% static "style.css" %}"/>
 
 
-<script type="text/javascript">
-    let x=0;
-    let y=0;
-  function pageScroll() {
-    window.scrollBy(0,1);
-    scrolldelay = setTimeout(pageScroll,100);
-}
-pageScroll();
-</script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript">
+    	$.fn.infiniteScrollUp=function(){
+    		var self=this,kids=self.children()
+    		kids.slice(20).hide()
+    		setInterval(function(){
+    			kids.filter(':hidden').eq(0).fadeIn()
+    			kids.eq(0).fadeOut(function(){
+    				$(this).appendTo(self)
+    				kids=self.children()
+    			})
+    		},1000)
+    		return this
+    	}
+    	$(function(){
+    		$('tbody').infiniteScrollUp()
+    	})
 
-{% block content %}
-<h1>Join The Ride!</h1>
+
+    </script>
+    <title>infiniteScrollUp</title>
+</head>
+<body>
 
 
-    <!--<div class="table-responsive table-bordered movie-table">-->
+<div id="mydiv">
+    <ul class="nav_ul">
+        <li class="nav_li"><a class="active" href="{% url 'accompanyMe:ride_list' %}"> Home</a></li>
+        <li class="nav_li"><a href="{% url 'accompanyMe:add_user' %} "> Add user</a></li>
+        <li class="nav_li"><a href="{% url 'accompanyMe:add_ride' %}"> Add ride</a></li>
+        <li class="nav_li"><a href="{% url 'accompanyMe:Cancel' %} "> Cancel Ride</a></li>
+        <li class="nav_li"><a href="{% url 'accompanyMe:UserCancel' %} "> User Cancel Ride</a></li>
 
-<meta http-equiv="refresh" content="3">
-        <table class="table table-striped">
-            <thead>
-                <tr align="center" >
+        {% if user.is_authenticated %}
+        <!--<p class="navbar-brand"> Hi {{ user.username }}! </p>-->
+        <li class="nav_li"><a href="{% url 'logout' %}">logout</a></li>
+        {% else %}
+        <li class="nav_li"><a href="{% url 'login' %}">login</a></li>
+        {% endif %}
+    </ul>
+
+
+    <div class="container-fluid">
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>
+                {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+                {{ message }}
+            </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+<span >
+    <figure class="item" id="ride">
+        <img width="50%" src="{% url 'accompanyMe:add_user_bar_code'%}"/>
+        <figcaption>Add Ride</figcaption>
+      </figure>
+    <p class="h1">Join The Ride! </p>
+    <figure class="item" id="audio">
+        <img width="50%" src="{% url 'accompanyMe:audio_bar_code'%}"/>
+        <figcaption>Vocal Search</figcaption>
+      </figure>
+    <!--<div class="item" id="ride">-->
+       <!--<img width="50%" src="{% url 'accompanyMe:add_user_bar_code'%}"/>-->
+        <!--<p>add ride</p>-->
+      <!--</div>-->
+<!--<p class="h1">Join The Ride! </p>-->
+<!--<div class="item" id="audio">-->
+    <!--<img width="50%" src="{% url 'accompanyMe:audio_bar_code'%}"/>-->
+    <!--<p>vocal search</p>-->
+<!--</div>-->
+</span>
+
+        <meta http-equiv="refresh" content="10">
+
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <colgroup>
+                    <col/>
+                    <col/>
+                    <col/>
+                    <col/>
+                    <col/>
+                    <col/>
+                </colgroup>
+                <thead>
+                <tr align="center">
                     <th align="center">Destination</th>
                     <th align="center">Hour</th>
                     <th align="center">Available places</th>
                     <th align="center">Code</th>
                 </tr>
-            </thead>
-            {% for object in object_list %}
-            <tr >
+                </thead>
+                {% for object in object_list %}
+                <tr>
 
-                <!--<td>-->
-                <!--<a href="{% url "accompanyMe:detail" object.id %}">-->
-                <!--&lt;!&ndash;{{ object.id }}&ndash;&gt;-->
-                <!--</a>-->
-                <!--</td>-->
-                <td align="center">
-                    {{ object.destination }}
-                </td>
-                <td align="center">
-                    {{ object.hour }}
-                </td>
-                <td align="center">
-                    {{ object.num_of_available_places }}
-                </td>
-                <td align="center">
-                    <!--<img width="90" height="90"-->
-                    <!--src="{% url "accompanyMe:bar_code" object.id %}"/>-->
-                    <img width="20%"  src="data:image/png;base64,{{object.qr_base64}}"/>
-                </td>
-            </tr>
-            {% endfor %}
-        </table>
-{% endblock %}
+                    <td align="center">
+                        {{ object.destination }}
+                    </td>
+                    <td align="center">
+                        {{ object.hour }}
+                    </td>
+                    <td align="center">
+                        {{ object.num_of_available_places }}
+                    </td>
+                    <td align="center">
+                        <!--<img width="90" height="90"-->
+                        <!--src="{% url "accompanyMe:bar_code" object.id %}"/>-->
+                        <img width="20%" src="data:image/png;base64,{{object.qr_base64}}"/>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+
+
 
 
 

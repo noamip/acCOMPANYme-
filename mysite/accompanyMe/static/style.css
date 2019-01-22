@@ -40,12 +40,6 @@ float:top;
    font-size:90%;
 }
 
-h1
-{
-margin-top:2%;
-margin-bottom:2%;
-}
-
 .nav_li a {
    display: block;
    color: white;
@@ -83,11 +77,7 @@ form {
     border-radius:3%;
     float:top;
 }
-.form_h1
-{
-   margin-top: 8%;
-   float:top;
-}
+
 button {
    margin-top: 3px;
 }
@@ -129,5 +119,42 @@ td
 }
 
 
+span{
+ margin-top: 3%;
+ display:inline-block;
+ width:100%;
+ }
 
+.item{
+   margin-top: 3%;
+   float:top;
+  width:15%;
+}
 
+#ride
+{
+float:left;
+}
+
+#audio
+{
+float:right;
+}
+.h1
+{
+   margin-top: 3%;
+   float:top;
+    font-weight:bold;
+    font-size:170%;
+    float:left;
+    width=70%;
+    margin-left:30%;
+}
+
+.form_h1
+{
+   margin-top: 8%;
+   float:top;
+    font-weight:bold;
+    font-size:170%;
+}

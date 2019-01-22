@@ -28,6 +28,8 @@ urlpatterns = [
     path('CancelRide', views.cancel_ride, name="cancel_ride"),
     path('UserCancel', views.user_cancel, name="UserCancel"),
     path('UserCancelRide', views.user_cancel_ride, name="user_cancel_ride"),
+    path('add_user_bar_code', views.add_ride_bar_code, name="add_user_bar_code"),
+    path('audio_bar_code', views.audio_bar_code, name="audio_bar_code"),
 ]
 
 

@@ -4,7 +4,7 @@
            add user
        {% endblock %}
 {% block content %}
-     <h1 class="form_h1"> Add User</h1>
+     <p class="form_h1"> Add User</p>
         <form action="{% url 'accompanyMe:add_user' %}" method="post" >
             {% csrf_token %}
 

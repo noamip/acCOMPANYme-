@@ -6,7 +6,7 @@ Login
 {% endblock %}
 
 {% block content %}
-<h1 class="form_h1"> Login</h1>
+<p class="form_h1"> Login</p>
 <form method="post">
   {% csrf_token %}
   {{ form.as_p }}
