@@ -127,6 +127,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 LOGIN_REDIRECT_URL = '/'
 PUBLIC_URL = 'http://cdef7c2a.ngrok.io'
+LOGOUT_REDIRECT_URL='login'
+
 
 TWILIO_PHONE_NUMBER = "+972559882612"
 # numbers_to_message = ['+972556801421', '+972583168008',]

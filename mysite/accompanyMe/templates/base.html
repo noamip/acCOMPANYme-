@@ -24,32 +24,41 @@
 
 <body>
 
-<nav class="navbar navbar-dark bg-dark">
+<!--<nav class="navbar navbar-dark bg-dark">-->
 
 
- <a class="navbar-brand" href="#">acCOMPANY me!</a>
-</nav>
+ <!--<a class="navbar-brand" href="#">acCOMPANY me!</a>-->
+<!--</nav>-->
+<div id="mydiv">
 <ul class="nav_ul">
     <li class="nav_li"><a class="active" href="{% url 'accompanyMe:ride_list' %}"> Home</a></li>
     <li class="nav_li"><a   href="{% url 'accompanyMe:add_user' %} "> Add user</a></li>
     <li class="nav_li"><a   href="{% url 'accompanyMe:add_ride' %}" > Add ride</a></li>
     <li class="nav_li"><a   href="{% url 'accompanyMe:Cancel' %} "> Cancel Ride</a></li>
      <li class="nav_li"><a   href="{% url 'accompanyMe:UserCancel' %} "> User Cancel Ride</a></li>
-</ul>
-
-<nav class="navbar navbar-dark bg-dark">
-
-
-  <a class="navbar-brand" href="#">acCOMPANY me! </a>
 
     {% if user.is_authenticated %}
-  <p class="navbar-brand"> Hi {{ user.username }}! </p>
-  <p><a href="{% url 'login' %}">logout</a></p>
+  <!--<p class="navbar-brand"> Hi {{ user.username }}! </p>-->
+  <li class="nav_li"><a href="{% url 'logout' %}">logout</a></li>
 {% else %}
-  <p>You are not logged in</p>
-  <a href="{% url 'login' %}">login</a>
+  <li class="nav_li"><a href="{% url 'login' %}">login</a></li>
 {% endif %}
-</nav>
+</ul>
+</div>
+
+<!--<nav class="navbar" >-->
+
+
+  <!--<a class="navbar-brand"  href="#">acCOMPANY me! </a>-->
+
+    <!--{% if user.is_authenticated %}-->
+  <!--<p class="navbar-brand"> Hi {{ user.username }}! </p>-->
+  <!--<p><a href="{% url 'logout' %}">logout</a></p>-->
+<!--{% else %}-->
+  <!--<p>You are not logged in</p>-->
+  <!--<a href="{% url 'login' %}">login</a>-->
+<!--{% endif %}-->
+<!--</nav>-->
 
 <div class="container-fluid">
     {% if messages %}

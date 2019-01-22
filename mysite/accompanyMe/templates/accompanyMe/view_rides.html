@@ -1,27 +1,26 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-<!--<script src="/static/jquery-3.3.1.js"></script>-->
+<!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>-->
 <!--<script type="text/javascript">-->
    <!--$( document ).ready(function() {-->
        <!--var previous = '';-->
       <!--setInterval(function(){-->
            <!--$.getJSON('api/update/',-->
-                   <!--function (data)-->
-                   <!--{-->
+                   <!--function (data) {-->
                        <!--// if (data.stringify() === previous)-->
                        <!--//     return;-->
                        <!--// previous = data.stringify();-->
+                      <!--var d=data.serializeArray();-->
                        <!--var tr;-->
                         <!--$('#myTable tbody').html("");-->
 
-                       <!--for (var i = 0; i < data.length; i++) {-->
+                       <!--for (var i = 0; i < d.length; i++) {-->
                            <!--tr = $('<tr/>');-->
-                           <!--tr.append("<td>" + data[i].fields.destination + "</td>");-->
-                           <!--tr.append("<td>" + data[i].fields.hour + "</td>");-->
-                           <!--tr.append("<td>" + data[i].fields.num_of_available_places + "</td>");-->
-                           <!--tr.append('<td><img width="90" height="90" src="'+data[i].qr_base64()+ "</td>\">");-->
-
+                           <!--tr.append("<td>" + d[i].destination + "</td>");-->
+                           <!--tr.append("<td>" + d[i].date + "</td>");-->
+                           <!--tr.append("<td>" + d[i].hour + "</td>");-->
+                           <!--tr.append("<td>" + d[i].num_of_available_places + "</td>");-->
                             <!--$('#myTable tbody').append(tr);-->
                        <!--}-->
                    <!--}).fail(function( jqxhr, textStatus, error ) {-->
@@ -30,104 +29,52 @@
                    <!--});-->
       <!--},500);-->
    <!--});-->
+
+
 <!--</script>-->
+
+
 <h1>join the ride</h1>
+
+
+   <!--<div class="table-responsive table-bordered movie-table">-->
+
 <meta http-equiv="refresh" content="3">
-<div class="container">
-    <table class="table table-hover" id="myTable">
-        <tr class="success">
-            <th>Destination</th>
-            <th>Hour</th>
-            <th>Num Available places</th>
-            <th>Code</th>
-        </tr>
-        {% for object in object_list %}
-        <tr class="info">
+       <table class="table table-striped">
+           <thead>
+               <tr align="center" >
+                   <th align="center">Destination</th>
+                   <th align="center">Hour</th>
+                   <th align="center">Num Available places</th>
+                   <th align="center">Code</th>
+               </tr>
+           </thead>
+           {% for object in object_list %}
+           <tr >
 
-            <!--<td>-->
-            <!--<a href="{% url "accompanyMe:detail" object.id %}">-->
-            <!--&lt;!&ndash;{{ object.id }}&ndash;&gt;-->
-            <!--</a>-->
-            <!--</td>-->
-            <td>
-                {{ object.destination }}
-            </td>
-            <td>
-                {{ object.hour  }}
-            </td>
-            <td>
-                {{ object.num_of_available_places }}
-            </td>
-            <td>
-                <!--<img width="90" height="90"-->
-                <!--src="{% url "accompanyMe:bar_code" object.id %}"/>-->
-                <img width="90" height="90" src="data:image/png;base64,{{object.qr_base64}}"/>
-            </td>
-        </tr>
-        {% endfor %}
-    </table>
-</div>
+               <!--<td>-->
+               <!--<a href="{% url "accompanyMe:detail" object.id %}">-->
+               <!--&lt;!&ndash;{{ object.id }}&ndash;&gt;-->
+               <!--</a>-->
+               <!--</td>-->
+               <td align="center">
+                   {{ object.destination }}
+               </td>
+               <td align="center">
+                   {{ object.hour }}
+               </td>
+               <td align="center">
+                   {{ object.num_of_available_places }}
+               </td>
+               <td align="center">
+                   <!--<img width="90" height="90"-->
+                   <!--src="{% url "accompanyMe:bar_code" object.id %}"/>-->
+                   <img width="90" height="90" src="data:image/png;base64,{{object.qr_base64}}"/>
+               </td>
+           </tr>
+           {% endfor %}
+       </table>
+   <!--</div>-->
+
+
 {% endblock %}
-
-
-
-<div class="container">
-	<div class="row">
-		<div class="table-responsive table-bordered movie-table">
-            <table class="table movie-table" id='myTable'>
-                  <thead>
-                  <tr class= "movie-table-head">
-                       <th>Destination</th>
-                       <th>Hour</th>
-                       <th>Num Available places</th>
-            <th>Code</th>
-                  </tr>
-              </thead>
-              <tbody>
-
-                <!--row-->
-                <tr class= "dark-row">
-                    <td >Toy Story</td>
-                    <td> <span style="color:green;">5</span> /5 </td>
-                    <td>40</td>
-                    <td>Both</td>
-                </tr>
-                <!--/.row-->
-
-                <!--row-->
-                <tr class="light-row">
-                    <td>The Shining</td>
-                    <td> <span style="color:green;">5</span> /5 </td>
-                    <td>37</td>
-                    <td>Both</td>
-                </tr>
-                <!--/.row-->
-
-                <!--row-->
-                <tr class = "dark-row">
-                    <td>Rubber</td>
-                    <td> <span style="color:red;">1</span> /5 </td>
-                    <td>20</td>
-                    <td>Rental</td>
-                </tr>
-                <!--/.row-->
-
-                <!--row-->
-                <tr class="light-row">
-                    <td>The Hangover</td>
-                    <td> <span style="color:orange;">3</span> /5 </td>
-                    <td>33</td>
-                    <td>Sale</td>
-                </tr>
-                <!--/.row-->
-
-
-
-              </tbody>
-            </table>
-            </div>
-	</div>
-</div>
-
-
-

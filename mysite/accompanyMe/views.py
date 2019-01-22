@@ -95,16 +95,6 @@ def user_list(request):
     })
 
 
-# def chunks(data, size):
-#     cur = []
-#     for x in data:
-#         cur.append(x)
-#         if len(cur) == size:
-#             yield cur
-#             cur = []
-#     if cur:
-#         yield cur
-
 
 def ride_list(request):
     curr_date = datetime.date.today()
@@ -141,10 +131,10 @@ def update(request):
     # return HttpResponse(data, content_type="application/json")
     # return JsonResponse({'latest_results_list': Ride.objects.all()})
 
-
 class NewUserView(FormView):
     form_class = NewUserForm
     template_name = "accompanyMe/add_user.html"
+
 
     def form_valid(self, form):
         e = User.objects.create_user(
@@ -184,22 +174,6 @@ class NewRideView(FormView):
         messages.success(self.request, "")
         return redirect("accompanyMe:add_ride")
 
-
-# def addride(request):
-#     return render(request, "accompanyMe/add_ride.html")
-
-
-# def add_a_ride(request):
-#     e = Ride(
-#         driver=request.user,
-#         destination=request.POST["destination"],
-#         hour=request.POST["hour"],
-#         date=request.POST["date"],
-#         num_of_available_places=request.POST["num_of_available_places"],
-#     )
-#     e.save()
-#     return render(request, "accompanyMe/status.html", {'msg': "ride added successfuly", })
-#     # return HttpResponse("ride added successfuly")
 
 
 # ================details=====================
@@ -283,7 +257,7 @@ def bar_code(request, pk):
 #     #     #     e1.save()
 #     return HttpResponse("remove")
 
-
+@login_required
 def cancel(request):
     o = Ride.objects.filter(driver=request.user).distinct()
     return render(request, "accompanyMe/cancel_form.html", {'objects': o, })
@@ -297,7 +271,7 @@ def cancel_ride(request):
     o.delete()
     return render(request, "accompanyMe/status.html", {'msg': "canceled successfully", })
 
-
+@login_required
 def user_cancel(request):
     qs = BookedRide.objects.filter(user=request.user).distinct()
     return render(request, "accompanyMe/user_cancel_form.html", {'objects': qs, })
