@@ -1,44 +1,24 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script type="text/javascript">
-    $( document ).ready(function() {
-        var previous = '';
-       setInterval(function(){
-            $.getJSON('api/update/',
-                    function (data) {
-                        // if (data.stringify() === previous)
-                        //     return;
-                        // previous = data.stringify();
-                       var d=data.serializeArray();
-                        var tr;
-                         $('#myTable tbody').html("");
 
-                        for (var i = 0; i < d.length; i++) {
-                            tr = $('<tr/>');
-                            tr.append("<td>" + d[i].destination + "</td>");
-                            tr.append("<td>" + d[i].date + "</td>");
-                            tr.append("<td>" + d[i].hour + "</td>");
-                            tr.append("<td>" + d[i].num_of_available_places + "</td>");
-                             $('#myTable tbody').append(tr);
-                        }
-                    }).fail(function( jqxhr, textStatus, error ) {
-                        var err = textStatus + ", " + error;
-                        console.log( "Request Failed: " + err );
-                    });
-       },500);
-    });
-
-
-</script>
+<!--<script type="text/javascript">-->
+    <!--let x=0;-->
+    <!--let y=0;-->
+  <!--function pageScroll() {-->
+    <!--window.scrollBy(0,1);-->
+    <!--scrolldelay = setTimeout(pageScroll,10);-->
+<!--}-->
+<!--pageScroll();-->
+<!--</script>-->
 
 
 <h1>join the ride</h1>
-<!--<meta http-equiv="refresh" content="3">-->
+
 
     <!--<div class="table-responsive table-bordered movie-table">-->
 
+<meta http-equiv="refresh" content="3">
         <table class="table table-striped">
             <thead>
                 <tr align="center" >
@@ -68,7 +48,7 @@
                 <td align="center">
                     <!--<img width="90" height="90"-->
                     <!--src="{% url "accompanyMe:bar_code" object.id %}"/>-->
-                    <img width="90" height="90" src="data:image/png;base64,{{object.qr_base64}}"/>
+                    <img width="20%"  src="data:image/png;base64,{{object.qr_base64}}"/>
                 </td>
             </tr>
             {% endfor %}
