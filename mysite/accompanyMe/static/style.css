@@ -56,11 +56,10 @@ float:top;
 form {
     padding:4%;
     width:40%;
+
     margin:0 auto;
+    margin-right:24%;
     text-align:left;
-    border-style:solid;
-    border-color:#839192  ;
-    border-radius:3%;
     float:top;
 }
 .card
