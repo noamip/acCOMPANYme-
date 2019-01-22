@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content %}
-    <h1> Cancel Ride</h1>
+    <h1 class="form_h1"> Cancel Ride</h1>
     <form action="{% url 'accompanyMe:cancel_ride' %}" method="post">
         {% csrf_token %}
         <ul class="list-unstyled">
