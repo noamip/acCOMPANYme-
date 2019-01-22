@@ -9,20 +9,49 @@
 <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>-->
 <!--</head>-->
 {% block content %}
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script>
-$(document).ready(function(){
- setInterval(function(){
-    $.get("/view_rides", function(data, status){
-      $('#hitchhikes').html(data);
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
+<!--<script>-->
+<!--$(document).ready(function(){-->
+ <!--setInterval(function(){-->
+    <!--$.get("/view_rides", function(data, status){-->
+      <!--$('#hitchhikes').html(data);-->
+    <!--});-->
+  <!--}, 3000);-->
+<!--});-->
+<!--</script>-->
+<!--<script type="text/javascript" src="{{STATIC_URL}}jquery-1.11.3.min.js"> </script>-->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $( document ).ready(function() {
+        var previous = '';
+       setInterval(function(){
+            $.getJSON('api/update/',
+                    function (data) {
+                        // if (data.stringify() === previous)
+                        //     return;
+                        // previous = data.stringify();
+                       var d=data.serializeArray();
+                        var tr;
+                         $('#myTable tbody').html("");
+
+                        for (var i = 0; i < d.length; i++) {
+                            tr = $('<tr/>');
+                            tr.append("<td>" + d[i].destination + "</td>");
+                            tr.append("<td>" + d[i].date + "</td>");
+                            tr.append("<td>" + d[i].hour + "</td>");
+                            tr.append("<td>" + d[i].num_of_available_places + "</td>");
+                             $('#myTable tbody').append(tr);
+                        }
+                    }).fail(function( jqxhr, textStatus, error ) {
+                        var err = textStatus + ", " + error;
+                        console.log( "Request Failed: " + err );
+                    });
+       },500);
     });
-  }, 3000);
-});
 </script>
 <h1 >join the ride</h1>
-    <meta http-equiv="refresh" content="3">
-<table class="table table-hover">
-
+    <!--<meta http-equiv="refresh" content="3">-->
+<table class="table table-hover" id = 'myTable'>
    <tr class="success">
        <th>Code</th>
        <th>ID</th>
@@ -34,7 +63,6 @@ $(document).ready(function(){
    {% for object in object_list %}
        <tr class="info">
            <td>
-
                <!--<img width="90" height="90"-->
                <!--src="{% url "accompanyMe:bar_code" object.id %}"/>-->
                <img width="90" height="90" src="data:image/png;base64,{{object.qr_base64}}"/>
@@ -59,6 +87,9 @@ $(document).ready(function(){
        </tr>
 {% endfor %}
 </table>
-
-
+<script src="/static/vendor/jquery-3.3.1.js"></script>
+<script src="/static/js/ajax-reload.js"></script>
 {% endblock %}
+
+
+

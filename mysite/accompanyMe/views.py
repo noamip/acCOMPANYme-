@@ -1,13 +1,14 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
+from django.core.serializers import serialize
+from django.contrib.sessions import serializers
+from django.core.serializers import serialize
 from django.forms import RadioSelect
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django import forms
 from django.shortcuts import render, get_object_or_404, redirect
 import pyqrcode
 from django.views.generic import FormView
-
 from .models import User, Ride, BookedRide, MyUser
 from django.conf import settings
 import datetime
@@ -15,7 +16,48 @@ import datetime
 
 # Twilio phone number goes here. Grab one at https://twilio.com/try-twilio
 # and use the E.164 format, for example: "+12025551234"
+def audio(request):
+  import speech_recognition as spreg
 
+  from pydub import AudioSegment
+  from pydub.playback import play
+
+  sample_rate = 48000
+  data_size = 512
+
+  song = AudioSegment.from_wav("destination.wav")
+  play(song)
+
+  recog = spreg.Recognizer()
+  with spreg.Microphone(sample_rate=sample_rate, chunk_size=data_size) as source:
+      recog.adjust_for_ambient_noise(source)
+      import time
+      time.sleep(2)
+      print('Tell Something: ')
+      speech = recog.listen(source)
+  try:
+      text = recog.recognize_google(speech) #Tel Aviv
+      print('You have said: ' + text)
+      for ride in BookedRide:
+          if(Ride.object.filter(destination = text)):
+              print("find the destination!!")
+      song = AudioSegment.from_wav("time.wav")
+      play(song)
+      speech = recog.listen(source)
+      text = recog.recognize_google(speech) #16:00
+      for ride in BookedRide:
+          if(Ride.object.filter(destination = text) and Ride.object.filter(hour = text)):
+              print("find the time!!")
+      song = AudioSegment.from_wav("not found.wav")
+      play(song)
+      speech = recog.listen(source)
+      text = recog.recognize_google(speech)  #yes/no
+
+  except spreg.UnknownValueError:
+      print('Unable to recognize the audio')
+
+  except spreg.RequestError as e:
+      print("Request error from Google Speech Recognition service; {}".format(e))
 
 def dial_numbers(numbers_list, msg):
     """Dials one or more phone numbers from a Twilio phone number."""
@@ -76,6 +118,16 @@ class NewUserForm(forms.Form):
     email = forms.EmailField(max_length=100)
     password = forms.CharField(max_length=100, widget=forms.PasswordInput)
     phonenumber = forms.CharField(max_length=100)
+
+
+def update(request):
+    ret = Ride.objects.all()
+    ret = serialize("json", ret)
+    return HttpResponse(ret)
+    # data = serialize('json', Ride.objects.all())
+    # jobmstquery = Ride.objects()
+    # return HttpResponse(data, content_type="application/json")
+    # return JsonResponse({'latest_results_list': Ride.objects.all()})
 
 
 class NewUserView(FormView):
