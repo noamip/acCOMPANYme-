@@ -17,47 +17,105 @@ import datetime
 # Twilio phone number goes here. Grab one at https://twilio.com/try-twilio
 # and use the E.164 format, for example: "+12025551234"
 def audio(request):
-  import speech_recognition as spreg
+    import speech_recognition as sr
+    from pydub import AudioSegment
+    from pydub.playback import play
 
-  from pydub import AudioSegment
-  from pydub.playback import play
+    r = sr.Recognizer()
+    dis = sr.Recognizer()
+    time = sr.Recognizer()
+    yesno = sr.Recognizer()
 
-  sample_rate = 48000
-  data_size = 512
+    while (True):
+        song = AudioSegment.from_wav("destination.wav")
+        play(song)
+        with sr.Microphone() as source:
+            print("SAY destination")
+            audio = r.listen(source)
+            print("over destination")
+        try:
+            dis = r.recognize_google(audio)
+            print("TEXT destination: " + dis)
+            break
+        except:
+            pass
 
-  song = AudioSegment.from_wav("destination.wav")
-  play(song)
+    # while (True):
+    #     song = AudioSegment.from_wav("time.wav")
+    #     play(song)
+    #     with sr.Microphone() as source:
+    #         print("SAY time");
+    #         audio = r.listen(source)
+    #         print("over time")
+    #     try:
+    #         time = r.recognize_google(audio)
+    #         print("TEXT time: " + time)
+    #         break
+    #     except:
+    #         pass
 
-  recog = spreg.Recognizer()
-  with spreg.Microphone(sample_rate=sample_rate, chunk_size=data_size) as source:
-      recog.adjust_for_ambient_noise(source)
-      import time
-      time.sleep(2)
-      print('Tell Something: ')
-      speech = recog.listen(source)
-  try:
-      text = recog.recognize_google(speech) #Tel Aviv
-      print('You have said: ' + text)
-      for ride in BookedRide:
-          if(Ride.object.filter(destination = text)):
-              print("find the destination!!")
-      song = AudioSegment.from_wav("time.wav")
-      play(song)
-      speech = recog.listen(source)
-      text = recog.recognize_google(speech) #16:00
-      for ride in BookedRide:
-          if(Ride.object.filter(destination = text) and Ride.object.filter(hour = text)):
-              print("find the time!!")
-      song = AudioSegment.from_wav("not found.wav")
-      play(song)
-      speech = recog.listen(source)
-      text = recog.recognize_google(speech)  #yes/no
+    qs = Ride.objects.filter(destination=dis)  # , hour = time)
+    if not qs:
+        print("not found!!!!!!")
+    else:
+        print(" found!!!!!!")
+        return render(request, "accompanyMe/view_rides.html", {
+            'object_list': qs, })
 
-  except spreg.UnknownValueError:
-      print('Unable to recognize the audio')
+    # while (True):
+    #     song = AudioSegment.from_wav("not found.wav")
+    #     play(song)
+    #     with sr.Microphone() as source:
+    #         print("SAY yes/no");
+    #         audio = r.listen(source)
+    #         print("over yes/no")
+    #     try:
+    #         yesno = r.recognize_google(audio)
+    #         print("TEXT yes/no: " + yesno)
+    #         break
+    #     except:
+    #         pass
 
-  except spreg.RequestError as e:
-      print("Request error from Google Speech Recognition service; {}".format(e))
+    # import speech_recognition as spreg
+    #
+    # from pydub import AudioSegment
+    # from pydub.playback import play
+    #
+    # sample_rate = 48000
+    # data_size = 512
+    #
+    # song = AudioSegment.from_wav("destination.wav")
+    # play(song)
+    #
+    # recog = spreg.Recognizer()
+    # with spreg.Microphone(sample_rate=sample_rate, chunk_size=data_size) as source:
+    #     recog.adjust_for_ambient_noise(source)
+    #     print('Tell Something: ')
+    #     speech = recog.listen(source)
+    # try:
+    #     text = recog.recognize_google(speech)  # Tel Aviv
+    #     print('You have said: ' + text)
+    #     # for ride in BookedRide:
+    #     #     if(Ride.object.filter(destination = text)):
+    #     #         print("find the destination!!")
+    #     song = AudioSegment.from_wav("time.wav")
+    #     play(song)
+    #     speech1 = recog.listen(source)
+    #     text = recog.recognize_google(speech1)  # 16:00
+    #     # for ride in BookedRide:
+    #     #     if(Ride.object.filter(destination = text) and Ride.object.filter(hour = text)):
+    #     #         print("find the time!!")
+    #     song = AudioSegment.from_wav("not found.wav")
+    #     play(song)
+    #     speech2 = recog.listen(source)
+    #     text = recog.recognize_google(speech2)  # yes/no
+    #
+    # except spreg.UnknownValueError:
+    #     print('Unable to recognize the audio')
+    #
+    # except spreg.RequestError as e:
+    #     print("Request error from Google Speech Recognition service; {}".format(e))
+
 
 def dial_numbers(numbers_list, msg):
     """Dials one or more phone numbers from a Twilio phone number."""

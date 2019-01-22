@@ -26,6 +26,14 @@ body {
     float: left;
 }
 
+.td {
+    align:center
+}
+
+.tr {
+    align:center
+}
+
 .nav_li a {
     display: block;
     color: white;
