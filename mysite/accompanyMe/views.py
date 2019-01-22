@@ -1,13 +1,14 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
+from django.core.serializers import serialize
+from django.contrib.sessions import serializers
+from django.core.serializers import serialize
 from django.forms import RadioSelect
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django import forms
 from django.shortcuts import render, get_object_or_404, redirect
 import pyqrcode
 from django.views.generic import FormView
-
 from .models import User, Ride, BookedRide, MyUser
 from django.conf import settings
 import datetime
@@ -15,6 +16,105 @@ import datetime
 
 # Twilio phone number goes here. Grab one at https://twilio.com/try-twilio
 # and use the E.164 format, for example: "+12025551234"
+def audio(request):
+    import speech_recognition as sr
+    from pydub import AudioSegment
+    from pydub.playback import play
+
+    r = sr.Recognizer()
+    dis = sr.Recognizer()
+    time = sr.Recognizer()
+    yesno = sr.Recognizer()
+
+    while (True):
+        song = AudioSegment.from_wav("destination.wav")
+        play(song)
+        with sr.Microphone() as source:
+            print("SAY destination")
+            audio = r.listen(source)
+            print("over destination")
+        try:
+            dis = r.recognize_google(audio)
+            print("TEXT destination: " + dis)
+            break
+        except:
+            pass
+
+    # while (True):
+    #     song = AudioSegment.from_wav("time.wav")
+    #     play(song)
+    #     with sr.Microphone() as source:
+    #         print("SAY time");
+    #         audio = r.listen(source)
+    #         print("over time")
+    #     try:
+    #         time = r.recognize_google(audio)
+    #         print("TEXT time: " + time)
+    #         break
+    #     except:
+    #         pass
+
+    qs = Ride.objects.filter(destination=dis)  # , hour = time)
+    if not qs:
+        print("not found!!!!!!")
+    else:
+        print(" found!!!!!!")
+        return render(request, "accompanyMe/view_rides.html", {
+            'object_list': qs, })
+
+    # while (True):
+    #     song = AudioSegment.from_wav("not found.wav")
+    #     play(song)
+    #     with sr.Microphone() as source:
+    #         print("SAY yes/no");
+    #         audio = r.listen(source)
+    #         print("over yes/no")
+    #     try:
+    #         yesno = r.recognize_google(audio)
+    #         print("TEXT yes/no: " + yesno)
+    #         break
+    #     except:
+    #         pass
+
+    # import speech_recognition as spreg
+    #
+    # from pydub import AudioSegment
+    # from pydub.playback import play
+    #
+    # sample_rate = 48000
+    # data_size = 512
+    #
+    # song = AudioSegment.from_wav("destination.wav")
+    # play(song)
+    #
+    # recog = spreg.Recognizer()
+    # with spreg.Microphone(sample_rate=sample_rate, chunk_size=data_size) as source:
+    #     recog.adjust_for_ambient_noise(source)
+    #     print('Tell Something: ')
+    #     speech = recog.listen(source)
+    # try:
+    #     text = recog.recognize_google(speech)  # Tel Aviv
+    #     print('You have said: ' + text)
+    #     # for ride in BookedRide:
+    #     #     if(Ride.object.filter(destination = text)):
+    #     #         print("find the destination!!")
+    #     song = AudioSegment.from_wav("time.wav")
+    #     play(song)
+    #     speech1 = recog.listen(source)
+    #     text = recog.recognize_google(speech1)  # 16:00
+    #     # for ride in BookedRide:
+    #     #     if(Ride.object.filter(destination = text) and Ride.object.filter(hour = text)):
+    #     #         print("find the time!!")
+    #     song = AudioSegment.from_wav("not found.wav")
+    #     play(song)
+    #     speech2 = recog.listen(source)
+    #     text = recog.recognize_google(speech2)  # yes/no
+    #
+    # except spreg.UnknownValueError:
+    #     print('Unable to recognize the audio')
+    #
+    # except spreg.RequestError as e:
+    #     print("Request error from Google Speech Recognition service; {}".format(e))
 
 
 def dial_numbers(numbers_list, msg):
@@ -40,16 +140,6 @@ def user_list(request):
         'object_list': User.objects.order_by("-username"),
     })
 
-
-# def chunks(data, size):
-#     cur = []
-#     for x in data:
-#         cur.append(x)
-#         if len(cur) == size:
-#             yield cur
-#             cur = []
-#     if cur:
-#         yield cur
 
 
 def ride_list(request):
@@ -78,9 +168,19 @@ class NewUserForm(forms.Form):
     phonenumber = forms.CharField(max_length=100)
 
 
+def update(request):
+    ret = Ride.objects.all()
+    ret = serialize("json", ret)
+    return HttpResponse(ret)
+    # data = serialize('json', Ride.objects.all())
+    # jobmstquery = Ride.objects()
+    # return HttpResponse(data, content_type="application/json")
+    # return JsonResponse({'latest_results_list': Ride.objects.all()})
+
 class NewUserView(FormView):
     form_class = NewUserForm
     template_name = "accompanyMe/add_user.html"
+
 
     def form_valid(self, form):
         e = User.objects.create_user(
@@ -174,7 +274,7 @@ def bar_code(request, pk):
 #     #     #     e1.save()
 #     return HttpResponse("remove")
 
-
+@login_required
 def cancel(request):
     o = Ride.objects.filter(driver=request.user).distinct()
     return render(request, "accompanyMe/cancel_form.html", {'objects': o, })
@@ -188,7 +288,7 @@ def cancel_ride(request):
     o.delete()
     return render(request, "accompanyMe/status.html", {'msg': "canceled successfully", })
 
-
+@login_required
 def user_cancel(request):
     qs = BookedRide.objects.filter(user=request.user).distinct()
     return render(request, "accompanyMe/user_cancel_form.html", {'objects': qs, })

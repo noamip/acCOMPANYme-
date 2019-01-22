@@ -18,7 +18,7 @@ class MyUser(models.Model):
 class Ride(models.Model):
     # user_id=models.IntegerField(primary_key=True)
     # driver_email = models.EmailField()
-    driver=models.ForeignKey(User,on_delete=models.CASCADE)
+    driver = models.ForeignKey(User,on_delete=models.CASCADE)
     destination = models.TextField()
     hour = models.TimeField()
     date = models.DateField()
