@@ -69,6 +69,20 @@ form {
     border-radius:3%;
     float:top;
 }
+.card
+{
+    padding:4%;
+    width:40%;
+    margin:0 auto;
+    margin-top:10%;
+    text-align:center;
+    font-weight:bold;
+    font-size:130%;
+    border-style:solid;
+    border-color:#839192  ;
+    border-radius:3%;
+    float:top;
+}
 .form_h1
 {
    margin-top: 8%;
@@ -115,9 +129,5 @@ td
 }
 
 
-.card
-{
-    margin-top:15%;
-}
 
 
