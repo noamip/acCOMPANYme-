@@ -131,9 +131,7 @@ LOGOUT_REDIRECT_URL='login'
 
 
 TWILIO_PHONE_NUMBER = "+972559882612"
-# numbers_to_message = ['+972556801421', '+972583168008',]
 
-# URL location of TwiML instructions for how to handle the phone call
 TWIML_INSTRUCTIONS_URL =  "http://static.fullstackpython.com/phone-calls-python.xml"
 
 CLIENT = Client("ACdb54a9fd2490c54788e3d66dd30f226f", "35a8a48b2501585c4415c2b07bd2e38a")

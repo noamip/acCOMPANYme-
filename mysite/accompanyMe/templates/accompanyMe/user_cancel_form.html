@@ -1,11 +1,9 @@
 {% extends "base.html" %}
 
-{% block title %}
- User Cancel Ride
-{% endblock %}
 
 {% block content %}
     <h1> User Cancel Ride</h1>
+
     <form action="{% url 'accompanyMe:user_cancel_ride' %}" method="post">
         {% csrf_token %}
         <ul class="list-unstyled" >
@@ -22,5 +20,4 @@
         </ul>
          <input type="submit" value="CancelRide"/>
     </form>
-
 {% endblock %}
