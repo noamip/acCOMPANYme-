@@ -1,5 +1,4 @@
 import functools
-from typing import re
 
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -19,44 +18,61 @@ import datetime
 import speech_recognition as sr
 from pydub import AudioSegment
 from pydub.playback import play
+import speech_recognition as sr
+from pydub import AudioSegment
+from pydub.playback import play
+
+flag = True
 
 
 # Twilio phone number goes here. Grab one at https://twilio.com/try-twilio
 # and use the E.164 format, for example: "+12025551234"
 def audio(request):
-    import speech_recognition as sr
-    from pydub import AudioSegment
-    from pydub.playback import play
 
-    r = sr.Recognizer()
     dis = sr.Recognizer()
-    time = sr.Recognizer()
-    yesno = sr.Recognizer()
-
+    tim = sr.Recognizer()
     while (True):
         song = AudioSegment.from_wav("destination.wav")
         play(song)
         with sr.Microphone() as source:
             print("SAY destination")
-            audio = r.listen(source)
+            audio = dis.listen(source)
             print("over destination")
         try:
-            dis = r.recognize_google(audio)
+            dis = dis.recognize_google(audio)
             print("TEXT destination: " + dis)
             break
         except:
             pass
 
+    # while (True):
+    #     song1 = AudioSegment.from_wav("time.wav")
+    #     play(song1)
+    #     with sr.Microphone() as source1:
+    #         print("SAY time")
+    #         audio = tim.listen(source1)
+    #         print("over time")
+    #     try:
+    #         time = tim.recognize_google(audio)
+    #         print("TEXT time: " + time)
+    #         formatedDate = time.strftime("%H:%M:%S").time
+    #         # if ":" not in time:
+    #         #     time+=":00"
+    #         # 5 a.m.  6:15 p.m.
+    #         break
+    #     except:
+    #         pass
+
 
     qs = Ride.objects.filter(destination=dis)  # , hour = time)
     if not qs:
         print("not found!!!!!!")
+        curr_date = datetime.date.today()
+        qs = Ride.objects.all().filter(num_of_available_places__gt=0, date=curr_date).order_by('hour')
+        return render(request, "accompanyMe/view_rides.html", {'object_list': qs, })
     else:
         print(" found!!!!!!")
-        return render(request, "accompanyMe/view_rides.html", {
-            'object_list': qs, })
-
-<<<<<<< HEAD
+        return render(request, "accompanyMe/view_rides.html", {'object_list': qs, })
 
 
 def dial_numbers(numbers_list, msg):
@@ -74,9 +90,6 @@ def dial_numbers(numbers_list, msg):
 # def index(request):
 #     return render(request, "accompanyMe/index.html")
 
-=======
->>>>>>> 3fc348abd106ec43f3c86fa72c77c599d839187c
-
 # ====================lists======================
 
 def user_list(request):
@@ -85,8 +98,8 @@ def user_list(request):
     })
 
 
-
 def ride_list(request):
+    # check_search(request)
     curr_date = datetime.date.today()
     qs = Ride.objects.all().filter(num_of_available_places__gt=0, date=curr_date).order_by('hour')
     # return render(request, "accompanyMe/view_rides.html", {
@@ -121,10 +134,10 @@ def update(request):
     # return HttpResponse(data, content_type="application/json")
     # return JsonResponse({'latest_results_list': Ride.objects.all()})
 
+
 class NewUserView(FormView):
     form_class = NewUserForm
     template_name = "accompanyMe/add_user.html"
-
 
     def form_valid(self, form):
         e = User.objects.create_user(
@@ -165,37 +178,27 @@ class NewRideView(FormView):
         return redirect("accompanyMe:add_ride")
 
 
-
 # ================details=====================
-# def check_search(request):
-#     def decorator(f):
-#         @functools.wraps(f)
-#         def df(*args, **kwargs):
-#
-#         for i in range(max_retries):
-#             try:
-#                 return f(*args, **kwargs)
-#             except Exception as e:
-#                 if i == max_retries - 1:
-#                     raise
-#                 print("* Failed! (retry {}/{}): {}".format(
-#                     i + 1, max_retries, e))
-#
-#     r = sr.Recognizer()
-#     with sr.Microphone() as source:
-#         print("SAY search")
-#         audio = r.listen(source)
-#         print("over search")
-#     try:
-#         s = r.recognize_google(audio)
-#         print("TEXT search: " + s)
-#         if s == "search":
-#             audio()
-#     except:
-#         return HttpResponse()
+def check_search(request):
+    r = sr.Recognizer()
+    with sr.Microphone() as source:
+        print("SAY search")
+        audio = r.listen(source)
+        print("over search")
+    try:
+        s = r.recognize_google(audio)
+        print("TEXT search: " + s)
+        if s == "search":
+            print("lll")
+            return render(request, "accompanyMe/cancel_form.html", {'objects': o, })
+
+            return redirect("accompanyMe:audio")
+
+    except:
+        print("yyy")
+        return HttpResponse(request)
 
 
-# @check_search
 @login_required
 def ride_detail(request, pk):
     o = get_object_or_404(Ride, pk=pk)
@@ -260,6 +263,7 @@ def cancel_ride(request):
     o = get_object_or_404(Ride, pk=request.POST.get('ride'))
     o.delete()
     return render(request, "accompanyMe/status.html", {'msg': "canceled successfully", })
+
 
 @login_required
 def user_cancel(request):
