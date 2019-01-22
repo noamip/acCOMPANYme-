@@ -47,19 +47,6 @@ def audio(request):
         except:
             pass
 
-    # while (True):
-    #     song = AudioSegment.from_wav("time.wav")
-    #     play(song)
-    #     with sr.Microphone() as source:
-    #         print("SAY time");
-    #         audio = r.listen(source)
-    #         print("over time")
-    #     try:
-    #         time = r.recognize_google(audio)
-    #         print("TEXT time: " + time)
-    #         break
-    #     except:
-    #         pass
 
     qs = Ride.objects.filter(destination=dis)  # , hour = time)
     if not qs:
@@ -69,6 +56,7 @@ def audio(request):
         return render(request, "accompanyMe/view_rides.html", {
             'object_list': qs, })
 
+<<<<<<< HEAD
 
 
 def dial_numbers(numbers_list, msg):
@@ -86,6 +74,8 @@ def dial_numbers(numbers_list, msg):
 # def index(request):
 #     return render(request, "accompanyMe/index.html")
 
+=======
+>>>>>>> 3fc348abd106ec43f3c86fa72c77c599d839187c
 
 # ====================lists======================
 
