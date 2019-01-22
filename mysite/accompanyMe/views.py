@@ -121,22 +121,6 @@ class NewRideView(FormView):
         return redirect("accompanyMe:add_ride")
 
 
-# def addride(request):
-#     return render(request, "accompanyMe/add_ride.html")
-
-
-# def add_a_ride(request):
-#     e = Ride(
-#         driver=request.user,
-#         destination=request.POST["destination"],
-#         hour=request.POST["hour"],
-#         date=request.POST["date"],
-#         num_of_available_places=request.POST["num_of_available_places"],
-#     )
-#     e.save()
-#     return render(request, "accompanyMe/status.html", {'msg': "ride added successfuly", })
-#     # return HttpResponse("ride added successfuly")
-
 
 # ================details=====================
 @login_required
