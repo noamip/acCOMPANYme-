@@ -24,6 +24,7 @@ class Ride(models.Model):
     date = models.DateField()
     num_of_available_places = models.IntegerField()
 
+
     # available = models.BooleanField()
 
     def get_absolute_url(self):
