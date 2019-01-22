@@ -2,15 +2,15 @@
 {% load static %}
 {% block content %}
 
-<!--<script type="text/javascript">-->
-    <!--let x=0;-->
-    <!--let y=0;-->
-  <!--function pageScroll() {-->
-    <!--window.scrollBy(0,1);-->
-    <!--scrolldelay = setTimeout(pageScroll,10);-->
-<!--}-->
-<!--pageScroll();-->
-<!--</script>-->
+<script type="text/javascript">
+    let x=0;
+    let y=0;
+  function pageScroll() {
+    window.scrollBy(0,1);
+    scrolldelay = setTimeout(pageScroll,100);
+}
+pageScroll();
+</script>
 
 
 <h1>join the ride</h1>
@@ -53,10 +53,6 @@
             </tr>
             {% endfor %}
         </table>
-    <!--</div>-->
-
-<script src="/static/vendor/jquery-3.3.1.js"></script>
-<script src="/static/js/ajax-reload.js"></script>
 {% endblock %}
 
 

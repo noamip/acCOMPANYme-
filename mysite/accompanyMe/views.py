@@ -14,8 +14,6 @@ from django.conf import settings
 import datetime
 
 
-# Twilio phone number goes here. Grab one at https://twilio.com/try-twilio
-# and use the E.164 format, for example: "+12025551234"
 def audio(request):
     import speech_recognition as sr
     from pydub import AudioSegment
@@ -40,6 +38,19 @@ def audio(request):
         except:
             pass
 
+    # while (True):
+    #     song = AudioSegment.from_wav("time.wav")
+    #     play(song)
+    #     with sr.Microphone() as source:
+    #         print("SAY time");
+    #         audio = r.listen(source)
+    #         print("over time")
+    #     try:
+    #         time = r.recognize_google(audio)
+    #         print("TEXT time: " + time)
+    #         break
+    #     except:
+    #         pass
 
     qs = Ride.objects.filter(destination=dis)  # , hour = time)
     if not qs:
@@ -50,6 +61,18 @@ def audio(request):
             'object_list': qs, })
 
 
+
+def dial_numbers(numbers_list, msg):
+    for number in numbers_list:
+        print("Dialing", number)
+        settings.CLIENT.messages.create(
+            body=msg,
+            from_=settings.TWILIO_PHONE_NUMBER,
+            to=number
+        )
+
+
+
 # ====================lists======================
 
 def user_list(request):
@@ -58,10 +81,20 @@ def user_list(request):
     })
 
 
+# def chunks(data, size):
+#     cur = []
+#     for x in data:
+#         cur.append(x)
+#         if len(cur) == size:
+#             yield cur
+#             cur = []
+#     if cur:
+#         yield cur
+
 
 def ride_list(request):
     curr_date = datetime.date.today()
-    qs = Ride.objects.all().filter(num_of_available_places__gt=0, date=curr_date).order_by('hour')
+    qs = Ride.objects.all().filter(num_of_available_places__gt=0, date=curr_date).order_by('date').order_by('hour')
     # return render(request, "accompanyMe/view_rides.html", {
     #     'chunks': chunks(qs, 4),
     # })
@@ -94,10 +127,10 @@ def update(request):
     # return HttpResponse(data, content_type="application/json")
     # return JsonResponse({'latest_results_list': Ride.objects.all()})
 
+
 class NewUserView(FormView):
     form_class = NewUserForm
     template_name = "accompanyMe/add_user.html"
-
 
     def form_valid(self, form):
         e = User.objects.create_user(
