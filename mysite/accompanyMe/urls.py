@@ -8,8 +8,6 @@ app_name = "accompanyMe"
 
 urlpatterns = [
     path('', views.ride_list, name="ride_list"),
-    # path('Rides', views.ride_list, name="ride_list"),
-    # path('index', views.index, name="index"),
     path('list', views.user_list, name="list"),
     path('api/update/', views.update, name="update"),
     # path('Rides', views.ride_list, name="ride_list"),
@@ -30,7 +28,6 @@ urlpatterns = [
     path('CancelRide', views.cancel_ride, name="cancel_ride"),
     path('UserCancel', views.user_cancel, name="UserCancel"),
     path('UserCancelRide', views.user_cancel_ride, name="user_cancel_ride"),
-# path('selectRide', views.select_ride, name="select_ride"),
 ]
 
 

@@ -1,5 +1,4 @@
 import functools
-from typing import re
 
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -20,48 +19,33 @@ import speech_recognition as sr
 from pydub import AudioSegment
 from pydub.playback import play
 
+flag = True
+
 
 def audio(request):
-    import speech_recognition as sr
-    from pydub import AudioSegment
-    from pydub.playback import play
 
-    r = sr.Recognizer()
     dis = sr.Recognizer()
-    time = sr.Recognizer()
-    yesno = sr.Recognizer()
-
+    tim = sr.Recognizer()
     while (True):
         song = AudioSegment.from_wav("destination.wav")
         play(song)
         with sr.Microphone() as source:
             print("SAY destination")
-            audio = r.listen(source)
+            audio = dis.listen(source)
             print("over destination")
         try:
-            dis = r.recognize_google(audio)
+            dis = dis.recognize_google(audio)
             print("TEXT destination: " + dis)
             break
         except:
             pass
 
-    # while (True):
-    #     song = AudioSegment.from_wav("time.wav")
-    #     play(song)
-    #     with sr.Microphone() as source:
-    #         print("SAY time");
-    #         audio = r.listen(source)
-    #         print("over time")
-    #     try:
-    #         time = r.recognize_google(audio)
-    #         print("TEXT time: " + time)
-    #         break
-    #     except:
-    #         pass
-
     qs = Ride.objects.filter(destination=dis)  # , hour = time)
     if not qs:
         print("not found!!!!!!")
+        curr_date = datetime.date.today()
+        qs = Ride.objects.all().filter(num_of_available_places__gt=0, date=curr_date).order_by('hour')
+        return render(request, "accompanyMe/view_rides.html", {'object_list': qs, })
     else:
         print(" found!!!!!!")
         return render(request, "accompanyMe/view_rides.html", {
@@ -84,27 +68,15 @@ def dial_numbers(numbers_list, msg):
 
 
 
-
-# ====================lists======================
-
 def user_list(request):
     return render(request, "accompanyMe/user_list.html", {
         'object_list': User.objects.order_by("-username"),
     })
 
 
-# def chunks(data, size):
-#     cur = []
-#     for x in data:
-#         cur.append(x)
-#         if len(cur) == size:
-#             yield cur
-#             cur = []
-#     if cur:
-#         yield cur
-
 
 def ride_list(request):
+    # check_search(request)
     curr_date = datetime.date.today()
     qs = Ride.objects.all().filter(num_of_available_places__gt=0, date=curr_date).order_by('date').order_by('hour')
     # return render(request, "accompanyMe/view_rides.html", {
@@ -183,8 +155,27 @@ class NewRideView(FormView):
         return redirect("accompanyMe:add_ride")
 
 
-
 # ================details=====================
+
+def check_search(request):
+    r = sr.Recognizer()
+    with sr.Microphone() as source:
+        print("SAY search")
+        audio = r.listen(source)
+        print("over search")
+    try:
+        s = r.recognize_google(audio)
+        print("TEXT search: " + s)
+        if s == "search":
+            print("lll")
+            return render(request, "accompanyMe/cancel_form.html", {'objects': o, })
+
+            return redirect("accompanyMe:audio")
+
+    except:
+        print("yyy")
+        return HttpResponse(request)
+
 
 @login_required
 def ride_detail(request, pk):
@@ -230,6 +221,7 @@ def cancel_ride(request):
     o = get_object_or_404(Ride, pk=request.POST.get('ride'))
     o.delete()
     return render(request, "accompanyMe/status.html", {'msg': "canceled successfully", })
+
 
 @login_required
 def user_cancel(request):
