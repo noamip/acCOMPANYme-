@@ -6,9 +6,7 @@
          content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
 
 
 
@@ -26,11 +24,6 @@
 
 <body>
 
-<!--<nav class="navbar navbar-dark bg-dark">-->
-
-
- <!--<a class="navbar-brand" href="#">acCOMPANY me!</a>-->
-<!--</nav>-->
 <div id="mydiv">
 <ul class="nav_ul">
     <li class="nav_li"><a class="active" href="{% url 'accompanyMe:ride_list' %}"> Home</a></li>
@@ -48,19 +41,7 @@
 </ul>
 </div>
 
-<!--<nav class="navbar" >-->
 
-
-  <!--<a class="navbar-brand"  href="#">acCOMPANY me! </a>-->
-
-    <!--{% if user.is_authenticated %}-->
-  <!--<p class="navbar-brand"> Hi {{ user.username }}! </p>-->
-  <!--<p><a href="{% url 'logout' %}">logout</a></p>-->
-<!--{% else %}-->
-  <!--<p>You are not logged in</p>-->
-  <!--<a href="{% url 'login' %}">login</a>-->
-<!--{% endif %}-->
-<!--</nav>-->
 
 <div class="container-fluid">
     {% if messages %}

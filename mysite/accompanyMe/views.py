@@ -1,3 +1,6 @@
+import functools
+from typing import re
+
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.serializers import serialize
@@ -12,6 +15,10 @@ from django.views.generic import FormView
 from .models import User, Ride, BookedRide, MyUser
 from django.conf import settings
 import datetime
+
+import speech_recognition as sr
+from pydub import AudioSegment
+from pydub.playback import play
 
 
 def audio(request):
@@ -62,7 +69,10 @@ def audio(request):
 
 
 
+
 def dial_numbers(numbers_list, msg):
+    """Dials one or more phone numbers from a Twilio phone number."""
+    # list of one or more phone numbers to dial, in "+19732644210" format
     for number in numbers_list:
         print("Dialing", number)
         settings.CLIENT.messages.create(
@@ -70,6 +80,8 @@ def dial_numbers(numbers_list, msg):
             from_=settings.TWILIO_PHONE_NUMBER,
             to=number
         )
+
+
 
 
 
@@ -173,6 +185,7 @@ class NewRideView(FormView):
 
 
 # ================details=====================
+
 @login_required
 def ride_detail(request, pk):
     o = get_object_or_404(Ride, pk=pk)
@@ -200,29 +213,9 @@ def bar_code(request, pk):
     qr.png(f"{pk}.png", scale=6)
     image_data = open(f"{pk}.png", "rb").read()
     return HttpResponse(image_data, content_type="image/png")
-    # qr = pyqrcode.create(f"{settings.PUBLIC_URL}/{pk}")
-    # qr.png(f"{pk}.png", scale=6)
-    # image_data = open(f"{pk}.png", "rb").read()
-    # return HttpResponse(image_data, content_type="image/png")
 
 
-# def remove(request):
-#     # user_name = ["ron", 'messy', 'omry', 'israel']
-#     #     # email = ["ron@gmail.com", 'messy@gmail.com', 'omry@gmail.com', 'israel@gmail.com']
-#     #     # passw = ['ronron123', 'messymessy123', 'omryomry123', 'israelisrael123']
-#     #     # phone = ['0583211223', '0583168008', '0556801421', '0556801421']
-#     #     # for i, user in enumerate(user_name):
-#     #     #     e = User.objects.create_user(
-#     #     #         username=user,
-#     #     #         email=email[i],
-#     #     #         password=passw[i]
-#     #     #     )
-#     #     #     e1 = MyUser(
-#     #     #         user_id=e.id,
-#     #     #         phonenumber=phone[i],
-#     #     #     )
-#     #     #     e1.save()
-#     return HttpResponse("remove")
+
 
 @login_required
 def cancel(request):

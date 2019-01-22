@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
-{% block content %}
+
 
 <script type="text/javascript">
     let x=0;
@@ -12,7 +12,7 @@
 pageScroll();
 </script>
 
-
+{% block content %}
 <h1>join the ride</h1>
 
 
@@ -54,6 +54,7 @@ pageScroll();
             {% endfor %}
         </table>
 {% endblock %}
+
 
 
 
