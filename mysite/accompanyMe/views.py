@@ -40,19 +40,6 @@ def audio(request):
         except:
             pass
 
-    # while (True):
-    #     song = AudioSegment.from_wav("time.wav")
-    #     play(song)
-    #     with sr.Microphone() as source:
-    #         print("SAY time");
-    #         audio = r.listen(source)
-    #         print("over time")
-    #     try:
-    #         time = r.recognize_google(audio)
-    #         print("TEXT time: " + time)
-    #         break
-    #     except:
-    #         pass
 
     qs = Ride.objects.filter(destination=dis)  # , hour = time)
     if not qs:
@@ -61,76 +48,6 @@ def audio(request):
         print(" found!!!!!!")
         return render(request, "accompanyMe/view_rides.html", {
             'object_list': qs, })
-
-    # while (True):
-    #     song = AudioSegment.from_wav("not found.wav")
-    #     play(song)
-    #     with sr.Microphone() as source:
-    #         print("SAY yes/no");
-    #         audio = r.listen(source)
-    #         print("over yes/no")
-    #     try:
-    #         yesno = r.recognize_google(audio)
-    #         print("TEXT yes/no: " + yesno)
-    #         break
-    #     except:
-    #         pass
-
-    # import speech_recognition as spreg
-    #
-    # from pydub import AudioSegment
-    # from pydub.playback import play
-    #
-    # sample_rate = 48000
-    # data_size = 512
-    #
-    # song = AudioSegment.from_wav("destination.wav")
-    # play(song)
-    #
-    # recog = spreg.Recognizer()
-    # with spreg.Microphone(sample_rate=sample_rate, chunk_size=data_size) as source:
-    #     recog.adjust_for_ambient_noise(source)
-    #     print('Tell Something: ')
-    #     speech = recog.listen(source)
-    # try:
-    #     text = recog.recognize_google(speech)  # Tel Aviv
-    #     print('You have said: ' + text)
-    #     # for ride in BookedRide:
-    #     #     if(Ride.object.filter(destination = text)):
-    #     #         print("find the destination!!")
-    #     song = AudioSegment.from_wav("time.wav")
-    #     play(song)
-    #     speech1 = recog.listen(source)
-    #     text = recog.recognize_google(speech1)  # 16:00
-    #     # for ride in BookedRide:
-    #     #     if(Ride.object.filter(destination = text) and Ride.object.filter(hour = text)):
-    #     #         print("find the time!!")
-    #     song = AudioSegment.from_wav("not found.wav")
-    #     play(song)
-    #     speech2 = recog.listen(source)
-    #     text = recog.recognize_google(speech2)  # yes/no
-    #
-    # except spreg.UnknownValueError:
-    #     print('Unable to recognize the audio')
-    #
-    # except spreg.RequestError as e:
-    #     print("Request error from Google Speech Recognition service; {}".format(e))
-
-
-def dial_numbers(numbers_list, msg):
-    """Dials one or more phone numbers from a Twilio phone number."""
-    # list of one or more phone numbers to dial, in "+19732644210" format
-    for number in numbers_list:
-        print("Dialing", number)
-        settings.CLIENT.messages.create(
-            body=msg,
-            from_=settings.TWILIO_PHONE_NUMBER,
-            to=number
-        )
-
-
-# def index(request):
-#     return render(request, "accompanyMe/index.html")
 
 
 # ====================lists======================
@@ -144,7 +61,7 @@ def user_list(request):
 
 def ride_list(request):
     curr_date = datetime.date.today()
-    qs = Ride.objects.all().filter(num_of_available_places__gt=0, date=curr_date).order_by('date').order_by('hour')
+    qs = Ride.objects.all().filter(num_of_available_places__gt=0, date=curr_date).order_by('hour')
     # return render(request, "accompanyMe/view_rides.html", {
     #     'chunks': chunks(qs, 4),
     # })
